@@ -6,20 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
+#include "main.h"
 
-int main (int argc, const char * argv[])
+int main ()
 {
-    std::cout << "primeiro commit!!";
-
-	for (int i = 0; true; ++i) {
-		cout << "They're fucking zebras!\n";
-
-		if (i >= 1000) {
-			cout << "That's enough!\n";
-			break;
-		}
-	}
+    cout << "♠ ♣ ♥ ♦" << endl;
+    
     return 0;
 }
 
