@@ -10,9 +10,7 @@
 
 int main ()
 {
-	int copas = 771, espadas = 774, ouros = 772, paus = 773;
-    cout << "♠ ♣ ♥ ♦" << endl;
-    cout << (char) copas << (char) espadas << (char) ouros << (char) paus << endl;
+    // GUI code goes here...
     
     return 0;
 }
