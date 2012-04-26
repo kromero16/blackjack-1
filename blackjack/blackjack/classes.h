@@ -78,14 +78,25 @@ public:
     
 };
 
-class Game{
-    vector<Player> players;
-    
+class Round{
+	vector<Player> active_players;
+
 public:
-    
-    
+	Player* getNextPlayer();
+	int getPlay(Player*);
+
 };
 
-// need class round!!
+class Game{
+    vector<Player> players;
+    bool gameOver;
+
+public:
+    Game();
+    int inGameNumber();
+    Round* playRound();
+    bool addPlayers();
+};
+
 
 #endif
