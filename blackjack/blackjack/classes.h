@@ -12,6 +12,8 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <iostream>
+
 
 using namespace std;
 
@@ -24,8 +26,8 @@ class Card {
     bool faceUp;
     
 public:
-    Card (char suit, char value, bool faceUp);
-    Card (char suit, char value);
+    Card (char, char, bool);
+    Card (char, char);
     char getValue();
     char getSuit();
     bool isUp();
@@ -71,6 +73,7 @@ class House{
     queue<Card> deck;
     
 public:
+    House();
     bool populate();
     bool shuffle();  // check function random_shuffle() !;
     bool giveCard();
