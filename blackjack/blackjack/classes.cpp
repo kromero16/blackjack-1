@@ -50,7 +50,7 @@ bool House::populate(){
     
     char naipe, valor;
     
-    for (unsigned int n = 0; n <= 4; n++) { // os 4 naipes
+    for (unsigned int n = 0; n <= 3; n++) { // os 4 naipes
         
         switch (n) {
             case 0:
@@ -65,7 +65,6 @@ bool House::populate(){
             case 3:
                 naipe = 'E';  // espadas
                 break;
-                
             default:
                 break;
         }
