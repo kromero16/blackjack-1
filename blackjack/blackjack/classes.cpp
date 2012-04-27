@@ -90,6 +90,7 @@ bool House::populate(){
                         break;
                     case 14:
                         valor = 'A';  // as
+                        break;
                     default:
                         break;
                 }
