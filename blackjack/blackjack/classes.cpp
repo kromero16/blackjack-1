@@ -95,11 +95,28 @@ bool House::populate(){
                 }
             }
             
-            deck.push ( Card (valor, naipe) );
+            deck.push_back( Card (valor, naipe) );
             
         }
         
     }
     
     return true;
+}
+
+bool House::shuffle() {
+
+	srand (unsigned(time(NULL)));
+
+	random_shuffle (deck.begin(), deck.end());
+
+	//while(!deck.empty()){
+	//	cout << deck.front().getValue() << " " << deck.front().getSuit() << endl;
+	//	deck.pop_front();
+	//}
+	// caso queiras ver o baralho (atencao que apaga tudo o que esta em deck)
+	// depois de leres, apaga o coment xD
+
+	return true;
+
 }
