@@ -11,10 +11,8 @@
 int main ()
 {
     House a;
-    
     a.populate();
-
-    
+    a.shuffle();
     
     return 0;
 }
