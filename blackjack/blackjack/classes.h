@@ -80,7 +80,7 @@ public:
     House();
     bool populate();
     bool shuffle();
-    bool giveCard();
+    Card giveCard();
     bool getCard();
     
 };

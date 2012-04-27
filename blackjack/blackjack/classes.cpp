@@ -120,3 +120,10 @@ bool House::shuffle() {
 	return true;
 
 }
+
+Card House::giveCard() {
+
+	Card a(deck.front().getValue(), deck.front().getSuit(), deck.front().isUp());
+	deck.pop_front();
+	return a;
+}
