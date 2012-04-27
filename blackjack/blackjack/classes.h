@@ -13,6 +13,10 @@
 #include <vector>
 #include <queue>
 #include <iostream>
+#include <cstdlib>
+#include <algorithm>
+#include <functional>
+#include <ctime>
 
 
 using namespace std;
@@ -70,12 +74,12 @@ public:
 };
 
 class House{
-    queue<Card> deck;
+    deque<Card> deck;
     
 public:
     House();
     bool populate();
-    bool shuffle();  // check function random_shuffle() !;
+    bool shuffle();
     bool giveCard();
     bool getCard();
     
