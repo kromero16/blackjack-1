@@ -39,14 +39,30 @@ public:
     
 };
 
+class House{
+    deque<Card> deck;
+    
+public:
+    House();
+    void displayDeck(); // debug
+    bool populate();
+    bool shuffle();
+    Card putCard();
+    bool getCard(Card);
+    
+};
+
 class Hand {
-    vector<Card> hand;
+    vector<Card> vec_hand;
+    
     
 public:
     Hand ();
+    vector<Card> getHand();
+    void displayHand(); // debug
     int getTotal();
-    void clear();
-    bool addCard(Card card);
+    void putCards(House*);
+    bool getCard(House*);
     
 };
 
@@ -73,17 +89,6 @@ public:
     
 };
 
-class House{
-    deque<Card> deck;
-    
-public:
-    House();
-    bool populate();
-    bool shuffle();
-    Card giveCard();
-    bool getCard();
-    
-};
 
 class Round{
 	vector<Player> active_players;
