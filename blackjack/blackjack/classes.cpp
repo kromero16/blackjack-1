@@ -234,3 +234,14 @@ int Hand::getTotal(){
     
 }
 
+Player::Player (string n, int b){
+    name = n;
+    balance = b;
+    hand_ptr = new Hand;
+    
+}
+
+Hand* Player::getHand(){
+    return hand_ptr;
+}
+

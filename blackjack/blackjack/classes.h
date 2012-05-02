@@ -70,15 +70,15 @@ class Player{
     string name;
     float balance;
     float bet;
-    Hand* hand;
+    Hand* hand_ptr;
     bool inGame;
     
 public:
-    Player (string name, int balance);
+    Player (string, int);
     bool stand();
     bool hit();
     bool doub(); // double
-    Hand getHand();
+    Hand* getHand();
     bool isPlaying();
     
 };

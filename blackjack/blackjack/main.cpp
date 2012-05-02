@@ -18,16 +18,16 @@ int main ()
 
     cout << endl << endl;
     
-    Hand mao;
-    mao.getCard(&casa);
-    mao.getCard(&casa);
-    mao.getCard(&casa);
-    mao.displayHand();
+    Player p1 ("Pedro", 50);
+    p1.getHand()->getCard(&casa);
+    p1.getHand()->getCard(&casa);
+    p1.getHand()->getCard(&casa);
+    p1.getHand()->displayHand();
     
     cout << endl << endl;
     
-    cout << "Valor da mao: " << mao.getTotal();
-    mao.putCards(&casa);
+    cout << "Valor da mao: " << p1.getHand()->getTotal();
+    p1.getHand()->putCards(&casa);
     
     cout << endl << endl;
     
