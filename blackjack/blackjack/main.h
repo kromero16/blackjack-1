@@ -13,7 +13,10 @@
 
 #include "classes.h"
 
+#define PROMPT "> "
+
 using namespace std;
 
+vector<Player> getPlayers();
 
 #endif

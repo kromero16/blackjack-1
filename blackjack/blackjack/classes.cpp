@@ -234,6 +234,9 @@ int Hand::getTotal(){
     
 }
 
+
+
+
 Player::Player (string n, int b){
     name = n;
     balance = b;
@@ -245,3 +248,50 @@ Hand* Player::getHand(){
     return hand_ptr;
 }
 
+float Player::getBalance(){
+    return balance;
+}
+
+
+
+
+Dealer::Dealer(){
+    hand = new Hand;
+}
+
+Hand* Dealer::getHand(){
+    return hand;
+}
+
+
+
+
+
+Round::Round(vector<Player> vec_players){
+    active_players = vec_players;
+}
+
+
+
+
+Game::Game (vector<Player> vec_players){
+    players = vec_players;
+    dealer = new Dealer;
+}
+
+bool Game::over(){
+    return gameOver;
+}
+
+Round* Game::playRound(){
+    vector<Player> active_players;
+
+    
+    for (int i = 0; i < players.size() && active_players.size() <= 4 ; i++) {
+        if ( players.at(i).getBalance() > 0 ){
+            active_players.push_back(players.at(i) );
+        }
+    }
+    
+    return new Round(active_players);
+}

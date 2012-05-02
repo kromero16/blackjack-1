@@ -71,7 +71,6 @@ class Player{
     float balance;
     float bet;
     Hand* hand_ptr;
-    bool inGame;
     
 public:
     Player (string, int);
@@ -79,21 +78,24 @@ public:
     bool hit();
     bool doub(); // double
     Hand* getHand();
-    bool isPlaying();
+    float getBalance();
     
 };
 
 class Dealer{
     Hand* hand;
 public:
-    
+    Dealer();
+    Hand* getHand();
 };
 
 
 class Round{
 	vector<Player> active_players;
+    vector<Player>::iterator it;
 
 public:
+    Round(vector<Player>);
 	Player* getNextPlayer();
 	int getPlay(Player*);
 
@@ -101,13 +103,14 @@ public:
 
 class Game{
     vector<Player> players;
+    Dealer* dealer;
     bool gameOver;
 
 public:
-    Game();
+    Game(vector<Player>);
     int inGameNumber();
     Round* playRound();
-    bool addPlayers();
+    bool over();
 };
 
 

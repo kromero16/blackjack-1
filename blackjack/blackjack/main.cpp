@@ -8,9 +8,57 @@
 
 #include "main.h"
 
+vector<Player> getPlayers(){
+   
+    vector<Player> vec_players;
+    
+    string name;
+    float saldo;
+    
+    cout << "Defina jogadores. CTRL-Z (windows) ou CTRL-D (mac/linux) para sair." << endl;
+    
+    while (1) {
+        cout << "Indique o nome do jogador:" << endl << PROMPT;
+        cin >> name;
+        if (cin.eof()) {
+            break;
+        }
+        cout << "Saldo desse jogador?" << endl << PROMPT;
+        cin >> saldo;
+        if (cin.eof()) {
+            break;
+        }
+        
+        vec_players.push_back(Player(name, saldo));
+        
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
+        
+    }
+    
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
+    cout << "players returned!";
+    
+    return vec_players;
+}
+
 int main ()
 {
-    House casa;
+    
+    cout << "--------------- Blackjack --------------------" << endl;
+    
+    Game* game = new Game( getPlayers() );
+    
+    if ( !game->over() ) {
+        game->playRound();
+    }
+    
+    // DEBUG
+    
+    /* House casa;
     casa.populate();
     casa.shuffle();
     
@@ -32,6 +80,8 @@ int main ()
     cout << endl << endl;
     
     casa.displayDeck();
+     
+    */
     
     
     return 0;
