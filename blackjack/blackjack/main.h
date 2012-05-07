@@ -11,7 +11,13 @@
 
 #include <iostream>
 
-#include "classes.h"
+#include "player.h"
+#include "round.h"
+#include "card.h"
+#include "dealer.h"
+#include "game.h"
+#include "hand.h"
+#include "house.h"
 
 #define PROMPT "> "
 
