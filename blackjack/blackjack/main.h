@@ -25,5 +25,6 @@
 using namespace std;
 
 vector<Player> getPlayers();
+int setApostaMinima();
 
 #endif
