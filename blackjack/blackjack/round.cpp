@@ -30,3 +30,8 @@ bool Round::play(Player* player, int action){
     
     return true;
 }
+
+Player* Round::getNextPlayer(){
+	current_player += 1;
+	return * active_players[current_player];
+}
