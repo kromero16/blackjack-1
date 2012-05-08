@@ -11,9 +11,10 @@ class Game{
     Dealer* dealer;
     bool gameOver;
     House casa;
+    int apostaMinima;
     
 public:
-    Game(vector<Player>);
+    Game(vector<Player>, int);
     int inGameNumber();
     Round* playRound();
     bool over();
