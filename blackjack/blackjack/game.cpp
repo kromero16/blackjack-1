@@ -1,8 +1,9 @@
 #include "game.h"
 
-Game::Game (vector<Player> vec_players){
+Game::Game (vector<Player> vec_players, int aposta){
     players = vec_players;
     dealer = new Dealer;
+    apostaMinima = aposta;
     
     casa.populate();
     casa.shuffle();
