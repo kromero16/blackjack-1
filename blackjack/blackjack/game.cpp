@@ -17,7 +17,7 @@ Round* Game::playRound(){
     
     //popular uma ronda com 4 jogadores da lista players
     
-    for (int i = 0; i < players.size() && active_players.size() <= 4 ; i++) {
+    for (unsigned int i = 0; i < players.size() && active_players.size() <= 4 ; i++) {
         if ( players.at(i).getBalance() > 0 ){
             active_players.push_back(players.at(i) );
         }
