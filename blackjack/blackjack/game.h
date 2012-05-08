@@ -10,8 +10,8 @@ class Game{
     vector<Player> players;
     Dealer* dealer;
     bool gameOver;
-    House casa;
-    int apostaMinima;
+    House gameDeck;
+    int minimBet;
     
 public:
     Game(vector<Player>, int);

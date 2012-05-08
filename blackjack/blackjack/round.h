@@ -3,6 +3,10 @@
 
 #include <vector>
 #include "player.h"
+#include "house.h"
+#include "hand.h"
+#include "dealer.h"
+#include "card.h"
 
 
 class Round{
@@ -10,9 +14,9 @@ class Round{
     vector<Player>::iterator current_player;
     
 public:
-    Round(vector<Player>);
+    Round(vector<Player>, House*, Dealer*);
 	Player* getNextPlayer();
-	bool play(Player*, int);
+	Player* getCurrentPlayer();
     
 };
 

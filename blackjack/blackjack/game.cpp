@@ -3,10 +3,10 @@
 Game::Game (vector<Player> vec_players, int aposta){
     players = vec_players;
     dealer = new Dealer;
-    apostaMinima = aposta;
+    minimBet = aposta;
     
-    casa.populate();
-    casa.shuffle();
+    gameDeck.populate();
+    gameDeck.shuffle();
 }
 
 bool Game::over(){
@@ -24,5 +24,5 @@ Round* Game::playRound(){
         }
     }
     
-    return new Round(active_players);
+    return new Round(active_players, &gameDeck, dealer);
 }

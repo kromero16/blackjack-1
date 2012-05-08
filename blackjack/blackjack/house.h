@@ -4,9 +4,10 @@
 
 #include <queue>
 #include <algorithm>
-#include "card.h"
 #include <iostream>
 #include <ctime>
+
+#include "card.h"
 
 using namespace std;
 

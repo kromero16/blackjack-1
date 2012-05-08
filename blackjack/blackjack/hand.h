@@ -19,6 +19,7 @@ public:
     int getTotal();
     void putCards(House*);
     bool getCard(House*);
+    bool getCardFlipped(House*);
     
 };
 

@@ -10,15 +10,16 @@ class Player{
     float balance;
     float bet;
     Hand* hand_ptr;
-    bool isStanding;
+    int status;
     
 public:
     Player (string, int);
-    bool stand();
-    bool hit();
-    bool doub(); // double
+    bool wantsStand();
+    bool wantsHit();
+    bool wantsDouble();
     Hand* getHand();
     float getBalance();
+    bool changeStatus(int);
     
 };
 

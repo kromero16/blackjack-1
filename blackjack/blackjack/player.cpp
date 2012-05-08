@@ -4,7 +4,7 @@ Player::Player (string n, int b){
     name = n;
     balance = b;
     hand_ptr = new Hand;
-    isStanding = false;
+    
     
 }
 
@@ -16,17 +16,17 @@ float Player::getBalance(){
     return balance;
 }
 
-bool Player::stand(){
-    isStanding = true;
-    return true;
-}
-
-bool Player::hit(){
+bool Player::wantsStand(){
     
     return true;
 }
 
-bool Player::doub(){
+bool Player::wantsHit(){
+    
+    return true;
+}
+
+bool Player::wantsDouble(){
     
     return true;
 }

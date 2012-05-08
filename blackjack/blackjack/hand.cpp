@@ -22,6 +22,16 @@ bool Hand::getCard(House* h){
     
 }
 
+bool Hand::getCardFlipped(House* h){
+    Card c = h->putCard();
+    
+    c.flip();
+    
+    vec_hand.push_back(c);
+    
+    return true;
+}
+
 vector<Card> Hand::getHand(){
     return vec_hand;
 }

@@ -6,10 +6,10 @@ Card::Card(char v, char s, bool f){
     faceUp = f;
 }
 
-Card::Card (char v, char s){
+Card::Card(char v, char s){
     suit = s;
     value = v;
-    faceUp = false;
+    faceUp = true;
 }
 
 char Card::getValue(){

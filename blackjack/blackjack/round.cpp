@@ -1,37 +1,32 @@
 #include "round.h"
 
-Round::Round(vector<Player> vec_players){
+Round::Round(vector<Player> vec_players, House* h, Dealer* d){
     active_players = vec_players;
     current_player = active_players.begin();
+    
+    for (unsigned int i = 0; i < 2; i++) {
+        
+        for (vector<Player>::iterator player = active_players.begin(); player < active_players.end(); player++ ) {
+            player->getHand()->getCard(h); 
+        }
+        
+        if (i < 1) {
+           d->getHand()->getCard(h);
+        }
+        else{
+            d->getHand()->getCardFlipped(h);
+        }
+    }
+
+    
 }
 
-bool Round::play(Player* player, int action){
-    /*
-     actions
-     1. stand
-     2. hit
-     3. double
-     */
-    
-    switch (action) {
-        case 1:
-            player->stand();
-            break;
-        case 2:
-            player->hit();
-            break;
-        case 3:
-            player->doub();
-            break;
-        default:
-            return false;
-            break;
-    }
-    
-    return true;
-}
 
 Player* Round::getNextPlayer(){
-	++current_player;
-	return &(*current_player);
+	current_player++;
+	return (Player*)(current_player);
+}
+
+Player* Round::getCurrentPlayer(){
+    return current_player;
 }
