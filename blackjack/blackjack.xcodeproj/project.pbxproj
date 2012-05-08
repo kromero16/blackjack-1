@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		EB1B1B3C153EE84200818B34 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB1B1B3B153EE84200818B34 /* main.cpp */; };
 		EB1B1B3E153EE84200818B34 /* blackjack.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB1B1B3D153EE84200818B34 /* blackjack.1 */; };
+		EB7E5E7715590034004C1F38 /* card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E6615590034004C1F38 /* card.cpp */; };
+		EB7E5E7915590034004C1F38 /* dealer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E6A15590034004C1F38 /* dealer.cpp */; };
+		EB7E5E7A15590034004C1F38 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E6C15590034004C1F38 /* game.cpp */; };
+		EB7E5E7B15590034004C1F38 /* hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E6E15590034004C1F38 /* hand.cpp */; };
+		EB7E5E7C15590034004C1F38 /* house.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E7015590034004C1F38 /* house.cpp */; };
+		EB7E5E7D15590034004C1F38 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E7315590034004C1F38 /* player.cpp */; };
+		EB7E5E7E15590034004C1F38 /* round.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E7515590034004C1F38 /* round.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +35,21 @@
 		EB1B1B37153EE84200818B34 /* blackjack */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = blackjack; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1B1B3B153EE84200818B34 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EB1B1B3D153EE84200818B34 /* blackjack.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = blackjack.1; sourceTree = "<group>"; };
+		EB7E5E6615590034004C1F38 /* card.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = card.cpp; sourceTree = "<group>"; };
+		EB7E5E6715590034004C1F38 /* card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = card.h; sourceTree = "<group>"; };
+		EB7E5E6A15590034004C1F38 /* dealer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dealer.cpp; sourceTree = "<group>"; };
+		EB7E5E6B15590034004C1F38 /* dealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dealer.h; sourceTree = "<group>"; };
+		EB7E5E6C15590034004C1F38 /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
+		EB7E5E6D15590034004C1F38 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
+		EB7E5E6E15590034004C1F38 /* hand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hand.cpp; sourceTree = "<group>"; };
+		EB7E5E6F15590034004C1F38 /* hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hand.h; sourceTree = "<group>"; };
+		EB7E5E7015590034004C1F38 /* house.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = house.cpp; sourceTree = "<group>"; };
+		EB7E5E7115590034004C1F38 /* house.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = house.h; sourceTree = "<group>"; };
+		EB7E5E7215590034004C1F38 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		EB7E5E7315590034004C1F38 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		EB7E5E7415590034004C1F38 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
+		EB7E5E7515590034004C1F38 /* round.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = round.cpp; sourceTree = "<group>"; };
+		EB7E5E7615590034004C1F38 /* round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +82,22 @@
 		EB1B1B3A153EE84200818B34 /* blackjack */ = {
 			isa = PBXGroup;
 			children = (
+				EB7E5E6615590034004C1F38 /* card.cpp */,
+				EB7E5E6715590034004C1F38 /* card.h */,
+				EB7E5E6A15590034004C1F38 /* dealer.cpp */,
+				EB7E5E6B15590034004C1F38 /* dealer.h */,
+				EB7E5E6C15590034004C1F38 /* game.cpp */,
+				EB7E5E6D15590034004C1F38 /* game.h */,
+				EB7E5E6E15590034004C1F38 /* hand.cpp */,
+				EB7E5E6F15590034004C1F38 /* hand.h */,
+				EB7E5E7015590034004C1F38 /* house.cpp */,
+				EB7E5E7115590034004C1F38 /* house.h */,
+				EB7E5E7315590034004C1F38 /* player.cpp */,
+				EB7E5E7415590034004C1F38 /* player.h */,
+				EB7E5E7515590034004C1F38 /* round.cpp */,
+				EB7E5E7615590034004C1F38 /* round.h */,
 				EB1B1B3B153EE84200818B34 /* main.cpp */,
+				EB7E5E7215590034004C1F38 /* main.h */,
 				EB1B1B3D153EE84200818B34 /* blackjack.1 */,
 			);
 			path = blackjack;
@@ -117,6 +154,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1B1B3C153EE84200818B34 /* main.cpp in Sources */,
+				EB7E5E7715590034004C1F38 /* card.cpp in Sources */,
+				EB7E5E7915590034004C1F38 /* dealer.cpp in Sources */,
+				EB7E5E7A15590034004C1F38 /* game.cpp in Sources */,
+				EB7E5E7B15590034004C1F38 /* hand.cpp in Sources */,
+				EB7E5E7C15590034004C1F38 /* house.cpp in Sources */,
+				EB7E5E7D15590034004C1F38 /* player.cpp in Sources */,
+				EB7E5E7E15590034004C1F38 /* round.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +247,7 @@
 				EB1B1B43153EE84200818B34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
