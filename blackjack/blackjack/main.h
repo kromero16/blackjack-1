@@ -10,6 +10,7 @@
 #define main_h
 
 #include <iostream>
+#include <limits>
 
 #include "player.h"
 #include "round.h"
