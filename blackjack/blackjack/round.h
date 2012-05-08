@@ -12,11 +12,15 @@
 class Round{
 	vector<Player> active_players;
     vector<Player>::iterator current_player;
+    bool roundOver;
     
 public:
     Round(vector<Player>, House*, Dealer*);
 	Player* getNextPlayer();
+    bool currentPlayerIsDone();
 	Player* getCurrentPlayer();
+    bool over();
+    bool doAction(int);
     
 };
 

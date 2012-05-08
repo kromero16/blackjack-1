@@ -2,7 +2,7 @@
 
 Game::Game (vector<Player> vec_players, int aposta){
     players = vec_players;
-    dealer = new Dealer;
+    dealer = Dealer();
     minimBet = aposta;
     
     gameDeck.populate();
@@ -24,5 +24,5 @@ Round* Game::playRound(){
         }
     }
     
-    return new Round(active_players, &gameDeck, dealer);
+    return new Round(active_players, &gameDeck, &dealer);
 }

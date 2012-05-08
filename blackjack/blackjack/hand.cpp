@@ -32,7 +32,7 @@ bool Hand::getCardFlipped(House* h){
     return true;
 }
 
-vector<Card> Hand::getHand(){
+vector<Card> Hand::getCards(){
     return vec_hand;
 }
 
@@ -100,4 +100,17 @@ int Hand::getTotal(){
     
     return score;
     
+}
+
+int Hand::getNumOfCards(){
+    vector<Card>::iterator cards = this->vec_hand.begin();
+    
+    int numOfCards = 0;
+    
+    while (cards < vec_hand.end() ) {
+        numOfCards++;
+        cards++;
+    }
+    
+    return numOfCards;
 }

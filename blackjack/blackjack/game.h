@@ -8,7 +8,7 @@
 
 class Game{
     vector<Player> players;
-    Dealer* dealer;
+    Dealer dealer;
     bool gameOver;
     House gameDeck;
     int minimBet;

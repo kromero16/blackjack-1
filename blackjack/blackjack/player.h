@@ -14,12 +14,14 @@ class Player{
     
 public:
     Player (string, int);
-    bool wantsStand();
-    bool wantsHit();
-    bool wantsDouble();
+    bool stands();
+    bool hits();
+    bool doubles();
     Hand* getHand();
     float getBalance();
     bool changeStatus(int);
+    int getStatus();
+    int getOptions();
     
 };
 

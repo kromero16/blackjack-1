@@ -27,4 +27,7 @@ using namespace std;
 vector<Player> getPlayers();
 int setApostaMinima();
 
+int getPlayerOptions(int);
+void drawCards(vector<Card> hand);
+
 #endif
