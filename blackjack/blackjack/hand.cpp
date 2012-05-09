@@ -92,10 +92,10 @@ int Hand::getTotal(){
         return score;
     }
     else if (score > 21) {
-        do {
+        while (numOfAces > 0 && score > 21) {
             score -= 10;
             numOfAces -= 1;
-        } while (numOfAces > 0 || score > 21);
+        }
     }
     
     return score;

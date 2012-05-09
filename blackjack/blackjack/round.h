@@ -13,6 +13,8 @@ class Round{
 	vector<Player> active_players;
     vector<Player>::iterator current_player;
     bool roundOver;
+    House* gameDeck;
+    Dealer* dealer;
     
 public:
     Round(vector<Player>, House*, Dealer*);

@@ -3,7 +3,7 @@
 
 #include "hand.h"
 #include "string.h"
-
+#include "house.h"
 
 class Player{
     string name;
@@ -15,13 +15,14 @@ class Player{
 public:
     Player (string, int);
     bool stands();
-    bool hits();
-    bool doubles();
+    bool hits(House*);
+    bool doubles(House*);
     Hand* getHand();
     float getBalance();
     bool changeStatus(int);
     int getStatus();
     int getOptions();
+    string getName();
     
 };
 

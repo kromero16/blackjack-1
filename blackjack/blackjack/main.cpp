@@ -99,6 +99,9 @@ int getPlayerOptions(int options){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin >> choice;
             }
+        case 3:
+            //has blackjack
+            break;
         default:
             cout << "Erro";
             return 0;
@@ -108,8 +111,10 @@ int getPlayerOptions(int options){
     return choice;
 }
 
-void drawCards(vector<Card> hand){
-    vector<Card>::iterator card_iterator = hand.begin() ;
+void drawCards(Player* p){
+    vector<Card> hand = p->getHand()->getCards();
+    
+    vector<Card>::iterator card_iterator = hand.begin();
     
     char s, v;
     string suit, value;
@@ -178,10 +183,41 @@ void drawCards(vector<Card> hand){
                 break;
         }
         
-        cout << value << " de " << suit << endl;
+        cout << " - " << value << " de " << suit << endl;
     }
     
     return;
+}
+
+void drawPlayerStatus(Player* p){
+    int status = p->getStatus();
+    string name = p->getName();
+    
+    
+    switch (status) {
+        case 1:
+            cout << name << " hits!" << endl;
+            break;
+        case 2:
+            cout << name << " is standing!" << endl;
+            break;
+        case 3:
+            cout << name << " has busted with " << p->getHand()->getTotal() << " points!" << endl;
+            drawCards(p);
+            break;
+        case 4:
+            cout << name << " has doubled and now has " << p->getHand()->getTotal() << " points!" << endl;
+            break;
+            drawCards(p);
+        case 5:
+            cout << name << " has a blackjack!" << endl;
+            if (p->getHand()->getNumOfCards() != 2) {
+                drawCards(p);
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 
@@ -190,14 +226,14 @@ int main ()
     
     cout << "--------------- Blackjack --------------------" << endl;
     
-    Game *game = new Game(getPlayers(), setApostaMinima());
+    //Game *game = new Game(getPlayers(), setApostaMinima());
     
-    /*   // para testar rapidamente sem escolher players
+       // para testar rapidamente sem escolher players
     vector<Player> teste;
     teste.push_back(Player("Pedro", 10));
     teste.push_back(Player("Diogo", 10));
     Game *game = new Game(teste, 5);
-    */
+    
     while( !game->over() ) {
         Round *round = game->playRound();
         
@@ -207,15 +243,20 @@ int main ()
                 
                 Player* current_player = round->getCurrentPlayer();
                 
-                drawCards(current_player->getHand()->getCards() );
+                drawCards(current_player);
                 
                 cout << current_player->getHand()->getTotal() << " pontos" << endl;
                 
-                getPlayerOptions(current_player->getOptions() );
+                round->doAction( getPlayerOptions(current_player->getOptions() )   );
+                
+                drawPlayerStatus(current_player);
+                
             }
            
+            break;
         }
         
+        break;
     }
     
     
