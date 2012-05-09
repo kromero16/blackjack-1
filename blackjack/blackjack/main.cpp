@@ -120,12 +120,18 @@ void drawCards(Player* p){
     char s, v;
     string suit, value;
     
+    vector<char> suits, values;
     
+
     for (vector<Card>::iterator card_iterator = hand.begin(); card_iterator < hand.end(); card_iterator++) {
         s = card_iterator->getSuit();
         v = card_iterator->getValue();
         
-        switch (s) {
+        suits.push_back(s);
+        values.push_back(v);
+
+
+        /*switch (s) {
             case 'E':
                 suit = "Espadas";
                 break;
@@ -184,12 +190,37 @@ void drawCards(Player* p){
                 break;
             default:
                 break;
-        }
-        
-        cout << " - " << value << " de " << suit << endl;
+        }*/
+
+
+    }
+
+    for(unsigned int i = 0; i < suits.size(); ++i){
+    	   	cout << ",---,";
+    }
+
+    cout << endl;
+
+    for(unsigned int i = 0; i < suits.size(); ++i){
+       	 if(values.at(i) == 'T'){
+       	   	cout << "|10 |";
+       	 }
+       	 else cout << "|" << (char) values.at(i) <<"  |";
+    }
+
+    cout << endl;
+
+    for(unsigned int i = 0; i < suits.size(); ++i){
+         cout << "|  " << (char) suits.at(i) <<"|";
     }
     
-    return;
+    cout << endl;
+
+    for(unsigned int i = 0; i < suits.size(); ++i){
+         cout << "'---'";
+    }
+
+    cout << endl;
 }
 
 void drawPlayerStatus(Player* p){
