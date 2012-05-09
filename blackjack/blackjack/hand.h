@@ -2,6 +2,7 @@
 #define hand_h
 
 #include <vector>
+#include <cctype>
 #include "hand.h"
 #include "house.h"
 #include <iostream>

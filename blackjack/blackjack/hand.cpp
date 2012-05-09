@@ -60,7 +60,7 @@ int Hand::getTotal(){
         char val[1];
         val[0] = c.getValue();
         
-        if ( atoi(val) != 0 ) {
+        if ( !isalpha(val[0]) ) {
             score += atoi(val);
         }
         else{

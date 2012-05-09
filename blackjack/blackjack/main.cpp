@@ -27,7 +27,7 @@ vector<Player> getPlayers(){
     }
 
     
-    for (int n = 1; n <= numOfPlayers; n++){
+    for (unsigned int n = 1; n <= numOfPlayers; n++){
         cout << "Indique o nome do " << n << "o jogador: "<< endl << PROMPT;
         cin >> name;
         while(cin.fail()) {
@@ -99,6 +99,7 @@ int getPlayerOptions(int options){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin >> choice;
             }
+            break;
         case 3:
             //has blackjack
             break;
@@ -133,8 +134,10 @@ void drawCards(Player* p){
                 break;
             case 'C':
                 suit = "Copas";
+                break;
             case 'P':
                 suit = "Paus";
+                break;
             default:
                 break;
         }
@@ -207,8 +210,8 @@ void drawPlayerStatus(Player* p){
             break;
         case 4:
             cout << name << " has doubled and now has " << p->getHand()->getTotal() << " points!" << endl;
-            break;
             drawCards(p);
+            break;
         case 5:
             cout << name << " has a blackjack!" << endl;
             if (p->getHand()->getNumOfCards() != 2) {
