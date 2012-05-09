@@ -7,8 +7,8 @@
 
 class Player{
     string name;
-    float balance;
     float bet;
+    float balance;
     Hand* hand_ptr;
     int status;
     

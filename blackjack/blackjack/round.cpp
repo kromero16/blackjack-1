@@ -1,6 +1,6 @@
 #include "round.h"
 
-Round::Round(vector<Player> vec_players, House* h, Dealer* d){
+Round::Round(vector<Player*> vec_players, House* h, Dealer* d){
     this->active_players = vec_players;
     this->current_player = active_players.begin();
     this->roundOver = false;
@@ -9,8 +9,8 @@ Round::Round(vector<Player> vec_players, House* h, Dealer* d){
     
     for (unsigned int i = 0; i < 2; i++) {
         
-        for (vector<Player>::iterator player = active_players.begin(); player < active_players.end(); player++ ) {
-            player->getHand()->getCard(gameDeck); 
+        for (vector<Player*>::iterator player = active_players.begin(); player < active_players.end(); player++ ) {
+            (*player)->getHand()->getCard(gameDeck); 
         }
         
         if (i < 1) {
@@ -27,15 +27,15 @@ Round::Round(vector<Player> vec_players, House* h, Dealer* d){
 Player* Round::getNextPlayer(){
 	current_player++;
 
-	return (Player*)&(*current_player);;
+	return (Player*)&(*current_player);
 }
 
 Player* Round::getCurrentPlayer(){
-    return &(*current_player);
+    return *current_player;
 }
 
 bool Round::currentPlayerIsDone(){
-    if (this->current_player->getStatus() != 1){
+    if ((*this->current_player)->getStatus() != 1){
         return true;
     }
     else
@@ -50,13 +50,13 @@ bool Round::over(){
 bool Round::doAction(int choice){
     switch (choice) {
         case 1:
-            current_player->stands();
+            (*current_player)->stands();
             break;
         case 2:
-            current_player->hits(gameDeck);
+            (*current_player)->hits(gameDeck);
             break;
         case 3:
-            current_player->doubles(gameDeck);
+            (*current_player)->doubles(gameDeck);
             break;
             
         default:

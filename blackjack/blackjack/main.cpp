@@ -112,8 +112,8 @@ int getPlayerOptions(int options){
     return choice;
 }
 
-void drawCards(Player* p){
-    vector<Card> hand = p->getHand()->getCards();
+void drawCards(Hand* h){
+    vector<Card> hand = h->getCards();
     
     vector<Card>::iterator card_iterator = hand.begin();
     
@@ -237,16 +237,16 @@ void drawPlayerStatus(Player* p){
             break;
         case 3:
             cout << name << " has busted with " << p->getHand()->getTotal() << " points!" << endl;
-            drawCards(p);
+            drawCards(p->getHand() );
             break;
         case 4:
             cout << name << " has doubled and now has " << p->getHand()->getTotal() << " points!" << endl;
-            drawCards(p);
+            drawCards(p->getHand() );
             break;
         case 5:
             cout << name << " has a blackjack!" << endl;
             if (p->getHand()->getNumOfCards() != 2) {
-                drawCards(p);
+                drawCards(p->getHand() );
             }
             break;
         default:
@@ -276,8 +276,9 @@ int main ()
             while (!round->currentPlayerIsDone()) {
                 
                 Player* current_player = round->getCurrentPlayer();
+
                 
-                drawCards(current_player);
+                drawCards(current_player->getHand() );
                 
                 cout << current_player->getHand()->getTotal() << " pontos" << endl;
                 
