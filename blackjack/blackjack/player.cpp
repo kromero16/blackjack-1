@@ -1,10 +1,11 @@
 #include "player.h"
 
 Player::Player (string n, int b){
-    name = n;
-    balance = b;
-    hand_ptr = new Hand;
-    status = 1;
+    this->name = n;
+    this->balance = b;
+    this->hand_ptr = new Hand;
+    this->status = 1;  // is playing
+    this->bet = 0;
     
 }
 
@@ -70,6 +71,8 @@ bool Player::changeStatus(int new_status){
      3 - is bust
      4 - has doubled
      5 - has blackjack
+     6 - has doubled and blackjack
+     7 - lost (no more money to bet)
      ...
     */
     
@@ -99,5 +102,12 @@ int Player::getOptions(){
     else
         return 1;
     
+}
+
+bool Player::makeBet(float amount_betted){
+    this->balance -= amount_betted;
+    this->bet += amount_betted;
+    
+    return true;
 }
 

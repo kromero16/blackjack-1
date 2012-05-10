@@ -15,14 +15,18 @@ class Round{
     bool roundOver;
     House* gameDeck;
     Dealer* dealer;
+    float* minimBet;
     
 public:
-    Round(vector<Player*>, House*, Dealer*);
+    Round(vector<Player*>, House*, Dealer*, float*);
 	Player* getNextPlayer();
-    bool currentPlayerIsDone();
+    bool allPlayersAreDone();
 	Player* getCurrentPlayer();
     bool over();
     bool doAction(int);
+    Dealer* getDealer();
+    float getMinimBet();
+    bool dealerIsDone();
     
 };
 

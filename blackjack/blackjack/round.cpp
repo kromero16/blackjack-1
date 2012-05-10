@@ -1,11 +1,12 @@
 #include "round.h"
 
-Round::Round(vector<Player*> vec_players, House* h, Dealer* d){
+Round::Round(vector<Player*> vec_players, House* h, Dealer* d, float* b){
     this->active_players = vec_players;
     this->current_player = active_players.begin();
     this->roundOver = false;
     gameDeck = h;
     dealer = d;
+    minimBet = b;
     
     for (unsigned int i = 0; i < 2; i++) {
         
@@ -20,6 +21,8 @@ Round::Round(vector<Player*> vec_players, House* h, Dealer* d){
             d->getHand()->getCardFlipped(gameDeck);
         }
     }
+    
+    dealer->setStatus(1); // not playing yet
 
 }
 
@@ -27,16 +30,24 @@ Round::Round(vector<Player*> vec_players, House* h, Dealer* d){
 Player* Round::getNextPlayer(){
 	current_player++;
 
-	return (Player*)&(*current_player);
+	return *current_player;
 }
 
 Player* Round::getCurrentPlayer(){
     return *current_player;
 }
 
-bool Round::currentPlayerIsDone(){
+bool Round::allPlayersAreDone(){
     if ((*this->current_player)->getStatus() != 1){
-        return true;
+        this->getNextPlayer();
+        if (current_player == active_players.end() ){
+            
+            dealer->getStatus(); // dealer is now playing
+            
+            return true;
+        }
+        else
+            return false;
     }
     else
         return false;
@@ -65,4 +76,34 @@ bool Round::doAction(int choice){
     }
     
     return true;
+}
+
+Dealer* Round::getDealer(){
+    return dealer;
+}
+
+
+float Round::getMinimBet(){
+    return *minimBet;
+}
+
+
+bool Round::dealerIsDone(){
+    if (dealer->getStatus() == 2 && !dealer->getHand()->fetchCard(2)->isUp() ) // hand under 17 and not flipped 2nd card yet
+    {
+        dealer->flipCard();
+        dealer->setLastAction(1); // flipped 2nd card
+        dealer->getStatus();
+        return false;
+    }
+    else if (dealer->getStatus() == 2){
+        dealer->hits(gameDeck);
+        dealer->setLastAction(2); // dealer hits
+        dealer->getStatus();
+        return false;
+    }
+    else{
+        dealer->setLastAction(3); // dealer stands
+        return true;
+    }
 }

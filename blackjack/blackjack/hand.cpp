@@ -51,40 +51,44 @@ void Hand::putCards(House* h){
 
 
 int Hand::getTotal(){
-    vector<Card>::iterator it;
+    vector<Card>::iterator card_iterator;
     int numOfAces = 0;
     int score = 0;
     
-    for (it = vec_hand.begin(); it < vec_hand.end(); it++) {
-        Card c = *it;
-        char val[1];
+    for (card_iterator = vec_hand.begin(); card_iterator < vec_hand.end(); card_iterator++) {
+        Card c = *card_iterator;
+        char val[0];
         val[0] = c.getValue();
         
-        if ( !isalpha(val[0]) ) {
-            score += atoi(val);
-        }
-        else{
-            switch (val[0]) {
-                case 'T':
-                    score += 10;
-                    break;
-                case 'D':
-                    score += 10;
-                    break;
-                case 'V':
-                    score += 10;
-                    break;
-                case 'R':
-                    score += 10;
-                    break;
-                case 'A':
-                    score += 11;
-                    numOfAces += 1;
-                    break;
-                default:
-                    return -1;
-                    break;
+        if (c.isUp() ){
+            
+            if ( !isalpha(val[0]) ) {
+                score += atoi(val);
             }
+            else{
+                switch (val[0]) {
+                    case 'T':
+                        score += 10;
+                        break;
+                    case 'D':
+                        score += 10;
+                        break;
+                    case 'V':
+                        score += 10;
+                        break;
+                    case 'R':
+                        score += 10;
+                        break;
+                    case 'A':
+                        score += 11;
+                        numOfAces += 1;
+                        break;
+                    default:
+                        return -1;
+                        break;
+                }
+            }
+            
         }
     }
     
@@ -113,4 +117,14 @@ int Hand::getNumOfCards(){
     }
     
     return numOfCards;
+}
+
+Card* Hand::fetchCard(int card_number){
+    //warning -> card number 2 == position 1
+    for (int number = 0; number <= card_number-1; number++) {
+        if (number == card_number-1)
+            return &vec_hand.at(number);
+    }
+    
+    return &vec_hand.at(0);
 }

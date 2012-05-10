@@ -1,12 +1,13 @@
 #include "game.h"
 
-Game::Game (vector<Player> vec_players, int aposta){
+Game::Game (vector<Player> vec_players, float bet){
     players = vec_players;
     dealer = Dealer();
-    minimBet = aposta;
-    
+        
     gameDeck.populate();
     gameDeck.shuffle();
+    
+    minimBet = bet;
 }
 
 bool Game::over(){
@@ -24,5 +25,5 @@ Round* Game::playRound(){
         }
     }
     
-    return new Round(active_players, &gameDeck, &dealer);
+    return new Round(active_players, &gameDeck, &dealer, &minimBet);
 }

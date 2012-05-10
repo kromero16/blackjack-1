@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <limits>
+#include <ctime>
 
 #include "player.h"
 #include "round.h"
@@ -25,9 +26,13 @@
 using namespace std;
 
 vector<Player> getPlayers();
-int setApostaMinima();
+int setMinimBet();
 int getPlayerOptions(int);
 void drawCards(Hand*);
-void drawPlayerStatus(Player* p);
+void drawPlayerStatus(Player*);
+float getBet(float min, Player*);
+void wait(int);
+void drawDealerAction(Dealer*);
+void drawDealerStatus(Dealer*);
 
 #endif

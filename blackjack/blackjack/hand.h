@@ -22,6 +22,7 @@ public:
     bool getCard(House*);
     bool getCardFlipped(House*);
     int getNumOfCards();
+    Card* fetchCard(int);
     
 };
 

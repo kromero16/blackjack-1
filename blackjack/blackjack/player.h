@@ -7,8 +7,8 @@
 
 class Player{
     string name;
-    float bet;
-    float balance;
+    int bet;
+    int balance;
     Hand* hand_ptr;
     int status;
     
@@ -23,6 +23,7 @@ public:
     int getStatus();
     int getOptions();
     string getName();
+    bool makeBet(float);
     
 };
 

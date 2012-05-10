@@ -11,10 +11,10 @@ class Game{
     Dealer dealer;
     bool gameOver;
     House gameDeck;
-    int minimBet;
+    float minimBet;
     
 public:
-    Game(vector<Player>, int);
+    Game(vector<Player>, float);
     int inGameNumber();
     Round* playRound();
     bool over();

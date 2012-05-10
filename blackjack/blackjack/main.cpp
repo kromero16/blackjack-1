@@ -52,23 +52,23 @@ vector<Player> getPlayers(){
     return vec_players;
 }
 
-int setApostaMinima(){
-	int aposta;
+int setMinimBet(){
+	int bet;
 
 	cout << "Defina aposta minima (valor inteiro positivo)" << endl << PROMPT;
-	cin >> aposta;
+	cin >> bet;
 
-	while(!cin.good() || aposta <= 0){
+	while(!cin.good() || bet <= 0){
 		cout << "Por favor, atribua um valor plausivel (inteiro positivo) para a aposta minima" << endl << PROMPT;
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		cin >> aposta;
+		cin >> bet;
 	}
 
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-	return aposta;
+	return bet;
 }
 
 int getPlayerOptions(int options){
@@ -118,81 +118,20 @@ void drawCards(Hand* h){
     vector<Card>::iterator card_iterator = hand.begin();
     
     char s, v;
-    string suit, value;
+    bool faceUp;
     
     vector<char> suits, values;
+    vector<bool> visible;
     
 
     for (vector<Card>::iterator card_iterator = hand.begin(); card_iterator < hand.end(); card_iterator++) {
         s = card_iterator->getSuit();
         v = card_iterator->getValue();
+        faceUp = card_iterator->isUp();
         
         suits.push_back(s);
         values.push_back(v);
-
-
-        /*switch (s) {
-            case 'E':
-                suit = "Espadas";
-                break;
-            case 'O':
-                suit = "Ouros";
-                break;
-            case 'C':
-                suit = "Copas";
-                break;
-            case 'P':
-                suit = "Paus";
-                break;
-            default:
-                break;
-        }
-        
-        switch (v) {
-            case '2':
-                value = "Dois";
-                break;
-            case '3':
-                value = "Tres";
-                break;
-            case '4':
-                value = "Quatro";
-                break;
-            case '5':
-                value = "Cinco";
-                break;
-            case '6':
-                value = "Seis";
-                break;
-            case '7':
-                value = "Sete";
-                break;
-            case '8':
-                value = "Oito";
-                break;
-            case '9':
-                value = "Nove";
-                break;
-            case 'T':
-                value = "Dez";
-                break;
-            case 'V':
-                value = "Valete";
-                break;
-            case 'D':
-                value = "Dama";
-                break;
-            case 'R':
-                value = "Rei";
-                break;
-            case 'A':
-                value = "As";
-                break;
-            default:
-                break;
-        }*/
-
-
+        visible.push_back(faceUp);
     }
 
     for(unsigned int i = 0; i < suits.size(); ++i){
@@ -202,16 +141,24 @@ void drawCards(Hand* h){
     cout << endl;
 
     for(unsigned int i = 0; i < suits.size(); ++i){
-       	 if(values.at(i) == 'T'){
+        if (visible.at(i) == false) {
+            cout << "| //|";
+        }
+        else if(values.at(i) == 'T'){
        	   	cout << "|10 |";
-       	 }
-       	 else cout << "|" << (char) values.at(i) <<"  |";
+        }
+        else 
+            cout << "|" << (char) values.at(i) << "  |";
     }
 
     cout << endl;
 
     for(unsigned int i = 0; i < suits.size(); ++i){
-         cout << "|  " << (char) suits.at(i) <<"|";
+        if (visible.at(i) == false) {
+            cout << "|// |"; 
+        }
+        else
+            cout << "|  " << (char) suits.at(i) << "|";
     }
     
     cout << endl;
@@ -254,6 +201,65 @@ void drawPlayerStatus(Player* p){
     }
 }
 
+float getBet(float min, Player* player){
+    float bet = 0;
+    float player_balance = player->getBalance();
+    string name = player->getName();
+    
+    cout << name << ", quanto queres apostar? (Saldo: " << player->getBalance() << " / Aposta minima: " << min << ")" << endl << PROMPT;
+    cin >> bet;
+    
+    while (  (cin.fail() || bet < min ) || bet > player_balance ) {
+        cout << "Aposta invalida. Introduza novamente:" << endl << PROMPT;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> bet;
+    }
+    
+    return bet;
+}
+
+void drawDealerAction(Dealer* d){
+    int action = d->getLastAction();
+    
+    switch (action) {
+        case 1:
+            cout << "The dealer flips his card!" << endl;
+            break;
+        case 2:
+            cout << "The dealer hits!" << endl;
+            break;
+        case 3:
+            cout << "The dealer stands!" << endl;
+            break;
+        default:
+            break;
+    }
+    
+    return;
+}
+
+void drawDealerStatus(Dealer* d){
+    int status = d->getStatus();
+    
+    switch (status) {
+        case 4:
+            cout << "The Dealer has blackjack!" << endl;
+            break;
+        case 5:
+            cout << "The Dealer is bust!" << endl;
+            break;
+        default:
+            break;
+    }
+}
+
+void wait ( int seconds )
+{
+    clock_t endwait;
+    endwait = clock () + seconds * CLOCKS_PER_SEC ;
+    while (clock() < endwait) {}
+}
 
 int main ()
 {
@@ -273,24 +279,42 @@ int main ()
         
         while (!round->over() ) {
             
-            while (!round->currentPlayerIsDone()) {
+            Dealer* dealer = round->getDealer();
+
+            while (!round->allPlayersAreDone() ) {
                 
                 Player* current_player = round->getCurrentPlayer();
+                        
+                current_player->makeBet( getBet(round->getMinimBet(), current_player) );
+                
+                cout << "Dealer has " << dealer->getHand()->getTotal() << " points." << endl;
+                
+                drawCards(dealer->getHand() );
+                cout << endl;
 
+                cout << current_player->getName() << " has " << current_player->getHand()->getTotal() << " points." << endl;
                 
                 drawCards(current_player->getHand() );
-                
-                cout << current_player->getHand()->getTotal() << " pontos" << endl;
-                
+                                
                 round->doAction( getPlayerOptions(current_player->getOptions() )   );
                 
                 drawPlayerStatus(current_player);
                 
             }
-           
+            
+            while (!round->dealerIsDone()) {
+                drawDealerAction(dealer);
+                drawCards(dealer->getHand() );
+                cout << "Dealer has " << dealer->getHand()->getTotal() << " points." << endl;
+                drawDealerStatus(dealer);
+                wait(3);
+            }
+            
+            
+            //players done
             break;
         }
-        
+        // round over
         break;
     }
     
