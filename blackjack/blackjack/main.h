@@ -34,5 +34,6 @@ float getBet(float min, Player*);
 void wait(int);
 void drawDealerAction(Dealer*);
 void drawDealerStatus(Dealer*);
+void drawResult(Player*);
 
 #endif

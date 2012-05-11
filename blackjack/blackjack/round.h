@@ -27,6 +27,9 @@ public:
     Dealer* getDealer();
     float getMinimBet();
     bool dealerIsDone();
+    bool moneyIsDistributed();
+    ~Round();
+
     
 };
 

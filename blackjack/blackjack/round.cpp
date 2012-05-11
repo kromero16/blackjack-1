@@ -37,6 +37,7 @@ Player* Round::getCurrentPlayer(){
     return *current_player;
 }
 
+
 bool Round::allPlayersAreDone(){
     if ((*this->current_player)->getStatus() != 1){
         this->getNextPlayer();
@@ -104,6 +105,74 @@ bool Round::dealerIsDone(){
     }
     else{
         dealer->setLastAction(3); // dealer stands
+        current_player = active_players.begin(); // to start distributing the money
         return true;
     }
 }
+
+bool Round::moneyIsDistributed(){
+    Player* player = getCurrentPlayer();
+    
+    if (player->getBet() == 0 && player == active_players.back() ) {   // last player already got his money
+        this->roundOver = true; // round is now over;
+        return true;
+    }
+    else if (player->getBet() == 0) { // player already got his money
+        player = getNextPlayer();
+    }
+    
+    int player_score = player->getHand()->getTotal();
+    int dealer_score = this->dealer->getHand()->getTotal();
+    int player_status = player->getStatus();
+    int dealer_status = this->dealer->getStatus();
+    float player_bet = player->getBet();
+    
+    
+    if (player_status == 6 && dealer_status != 4) { 
+        // player has doubled and has blackjack AND dealer did not blackjack
+        
+        player->updateBalance(player_bet*2*2*1.5);
+    }
+    else if (player_status == 4 && (dealer_status != 5 && dealer_score < player_score) ) {  
+        // player has doubled AND dealer is not bust AND dealer has lesser score 
+        
+        player->updateBalance(player_bet*2*2);
+    }
+    else if (player_status == 5 && (dealer_status != 5 && dealer_score < player_score) ) { 
+        // player has blackjack AND dealer is not bust AND dealer has lesser score 
+        
+        player->updateBalance(player_bet*2*1.5);
+    }
+    else if ( (player_status != 3 && player_score > dealer_score ) || (player_status != 3 && dealer_status == 5) ){
+        // player isnt bust AND player has better hand OR player inst bust AND dealer is bust
+        
+        player->updateBalance(player_bet*2);
+    }
+    else if ( player_status == 3 || ( dealer_score > player_score && dealer_status != 5) ){
+        // player is bust OR dealer has better hand AND dealer isnt bust
+        
+        player->updateBalance(0);
+    }
+    else if ( player_score == dealer_score ){
+        // player hand equals dealers hand
+        
+        player->updateBalance(player_bet);
+    }
+    
+    return false;
+}
+
+Round::~Round(){
+    for (vector<Player*>::iterator player = active_players.begin(); player < active_players.end(); player++ ) {
+        (*player)->getHand()->putCards(gameDeck);
+        if ((*player)->getBalance() > *minimBet) {
+            (*player)->changeStatus(1);  // is playing
+        }
+        else
+            (*player)->changeStatus(7); // player does not have enough money, lost
+    }
+    
+    dealer->getHand()->putCards(gameDeck);
+    dealer->setStatus(1); // not playing yet
+}
+

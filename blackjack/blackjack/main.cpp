@@ -258,7 +258,19 @@ void wait ( int seconds )
 {
     clock_t endwait;
     endwait = clock () + seconds * CLOCKS_PER_SEC ;
-    while (clock() < endwait) {}
+    while (clock() < endwait){}
+}
+
+void drawResult(Player* p){
+    string name = p->getName(); 
+    float winnings = p->getLatestWinnings();
+    
+    if (winnings < 0) {
+        cout << name << " lost his bet, " << -winnings << " credits." << endl;
+    }
+    else
+        cout << name << " has won " << winnings << " credits!" << endl;
+
 }
 
 int main ()
@@ -280,22 +292,24 @@ int main ()
         while (!round->over() ) {
             
             Dealer* dealer = round->getDealer();
-
+            
             while (!round->allPlayersAreDone() ) {
                 
                 Player* current_player = round->getCurrentPlayer();
-                        
-                current_player->makeBet( getBet(round->getMinimBet(), current_player) );
+                
+                if (!current_player->hasBetted() ) {
+                    current_player->makeBet( getBet(round->getMinimBet(), current_player) );
+                }
                 
                 cout << "Dealer has " << dealer->getHand()->getTotal() << " points." << endl;
                 
                 drawCards(dealer->getHand() );
                 cout << endl;
-
+                
                 cout << current_player->getName() << " has " << current_player->getHand()->getTotal() << " points." << endl;
                 
                 drawCards(current_player->getHand() );
-                                
+                
                 round->doAction( getPlayerOptions(current_player->getOptions() )   );
                 
                 drawPlayerStatus(current_player);
@@ -310,12 +324,14 @@ int main ()
                 wait(3);
             }
             
+            while (!round->moneyIsDistributed() ) {
+                Player* current_player = round->getCurrentPlayer();
+                drawResult(current_player);
+            }
             
-            //players done
-            break;
         }
-        // round over
-        break;
+        
+        delete round;
     }
     
     
