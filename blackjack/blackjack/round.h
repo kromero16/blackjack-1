@@ -22,6 +22,7 @@ public:
 	Player* getNextPlayer();
     bool allPlayersAreDone();
 	Player* getCurrentPlayer();
+    bool allPlayersHaveBetted();
     bool over();
     bool doAction(int);
     Dealer* getDealer();

@@ -37,14 +37,11 @@ Player* Round::getCurrentPlayer(){
     return *current_player;
 }
 
-
 bool Round::allPlayersAreDone(){
     if ((*this->current_player)->getStatus() != 1){
         this->getNextPlayer();
         if (current_player == active_players.end() ){
-            
             dealer->getStatus(); // dealer is now playing
-            
             return true;
         }
         else
@@ -53,6 +50,23 @@ bool Round::allPlayersAreDone(){
     else
         return false;
 }
+
+
+bool Round::allPlayersHaveBetted(){    
+    Player* player_betting = getCurrentPlayer();
+    
+    if (player_betting == active_players.back() && player_betting->getBet() > 0){
+        current_player = active_players.begin();
+        return true; 
+    }
+    else if (player_betting->getBet() > 0) { // current player already betted
+        getNextPlayer();
+        return false;
+    }
+    else
+        return false;
+}
+
 
 
 bool Round::over(){

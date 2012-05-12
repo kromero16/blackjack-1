@@ -261,7 +261,7 @@ void wait ( int seconds )
     while (clock() < endwait){}
 }
 
-void drawResult(Player* p){
+void displayResult(Player* p){
     string name = p->getName(); 
     float winnings = p->getLatestWinnings();
     
@@ -271,6 +271,15 @@ void drawResult(Player* p){
     else
         cout << name << " has won " << winnings << " credits!" << endl;
 
+}
+
+void displayWinner(Player* p){
+    string name = p->getName();
+    float balance = p->getBalance();
+    
+    cout << name << " has won the game with " << balance << " credits!";
+    
+    return;
 }
 
 int main ()
@@ -293,13 +302,17 @@ int main ()
             
             Dealer* dealer = round->getDealer();
             
-            while (!round->allPlayersAreDone() ) {
-                
+            while (!round->allPlayersHaveBetted()) {
                 Player* current_player = round->getCurrentPlayer();
                 
                 if (!current_player->hasBetted() ) {
                     current_player->makeBet( getBet(round->getMinimBet(), current_player) );
                 }
+            }
+            
+            while (!round->allPlayersAreDone() ) {
+                
+                Player* current_player = round->getCurrentPlayer();
                 
                 cout << "Dealer has " << dealer->getHand()->getTotal() << " points." << endl;
                 
@@ -313,6 +326,7 @@ int main ()
                 round->doAction( getPlayerOptions(current_player->getOptions() )   );
                 
                 drawPlayerStatus(current_player);
+                cout << endl;
                 
             }
             
@@ -326,7 +340,7 @@ int main ()
             
             while (!round->moneyIsDistributed() ) {
                 Player* current_player = round->getCurrentPlayer();
-                drawResult(current_player);
+                displayResult(current_player);
             }
             
         }
@@ -334,7 +348,7 @@ int main ()
         delete round;
     }
     
-    
+    displayWinner(game->getWinner() );
     
     return 0;
 }

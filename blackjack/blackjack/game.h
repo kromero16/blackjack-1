@@ -9,15 +9,15 @@
 class Game{
     vector<Player> players;
     Dealer dealer;
-    bool gameOver;
     House gameDeck;
     float minimBet;
+    Player* winner;
     
 public:
     Game(vector<Player>, float);
-    int inGameNumber();
     Round* playRound();
     bool over();
+    Player* getWinner();
 };
 
 #endif

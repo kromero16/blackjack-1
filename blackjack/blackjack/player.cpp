@@ -47,6 +47,9 @@ bool Player::hits(House* h){
 bool Player::doubles(House* h){
     this->getHand()->getCard(h);
     
+    this->balance = this->balance - this->bet;
+    this->bet = this->bet*2;
+        
     int current_score = this->getHand()->getTotal();
     
     if (current_score > 21){
@@ -93,7 +96,12 @@ int Player::getOptions(){
     
     int player_points = this->getHand()->getTotal();
     
-    if ( ( player_points >= 9 && player_points <= 11 ) && this->getHand()->getNumOfCards() == 2 ){
+    bool hasMoneyToDouble = false;
+    
+    if (this->balance - this->bet > 0)
+        hasMoneyToDouble = true;
+    
+    if ( (( player_points >= 9 && player_points <= 11 ) && this->getHand()->getNumOfCards() == 2) && hasMoneyToDouble ){
         return 2;
     }
     else if (player_points == 21){
