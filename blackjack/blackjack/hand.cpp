@@ -57,7 +57,7 @@ int Hand::getTotal(){
     
     for (card_iterator = vec_hand.begin(); card_iterator < vec_hand.end(); card_iterator++) {
         Card c = *card_iterator;
-        char val[0];
+        char val[1];
         val[0] = c.getValue();
         
         if (c.isUp() ){
