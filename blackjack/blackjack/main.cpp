@@ -115,7 +115,7 @@ int getPlayerOptions(int options){
 void drawCards(Hand* h){
     vector<Card> hand = h->getCards();
     
-    vector<Card>::iterator card_iterator = hand.begin();
+    //vector<Card>::iterator card_iterator = hand.begin();
     
     char s, v;
     bool faceUp;
@@ -343,6 +343,8 @@ int main ()
                 displayResult(current_player);
             }
             
+            round->over();
+
         }
         
         delete round;
