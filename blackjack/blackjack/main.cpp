@@ -52,8 +52,8 @@ vector<Player> getPlayers(){
     return vec_players;
 }
 
-int setMinimBet(){
-	int bet;
+float setMinimBet(){
+	float bet;
 
 	cout << "Defina aposta minima (valor inteiro positivo)" << endl << PROMPT;
 	cin >> bet;
@@ -305,13 +305,14 @@ int main ()
     
     cout << "--------------- Blackjack --------------------" << endl;
     
-    //Game *game = new Game(getPlayers(), setApostaMinima());
+    Game *game = new Game(getPlayers(), setMinimBet());
     
-       // para testar rapidamente sem escolher players
+    /*   // para testar rapidamente sem escolher players
     vector<Player> teste;
     teste.push_back(Player("Pedro", 10));
     teste.push_back(Player("Diogo", 10));
     Game *game = new Game(teste, 5);
+     */
     
     while( !game->over() ) {
         Round *round = game->playRound();

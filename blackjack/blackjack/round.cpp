@@ -179,7 +179,7 @@ bool Round::moneyIsDistributed(){
 Round::~Round(){
     for (vector<Player*>::iterator player = active_players.begin(); player < active_players.end(); player++ ) {
         (*player)->getHand()->putCards(gameDeck);
-        if ((*player)->getBalance() > *minimBet) {
+        if ((*player)->getBalance() >= *minimBet) {
             (*player)->changeStatus(1);  // is playing
         }
         else

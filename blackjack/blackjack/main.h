@@ -26,7 +26,7 @@
 using namespace std;
 
 vector<Player> getPlayers();
-int setMinimBet();
+float setMinimBet();
 int getPlayerOptions(int);
 void drawCards(Hand*);
 void drawPlayerStatus(Player*);
