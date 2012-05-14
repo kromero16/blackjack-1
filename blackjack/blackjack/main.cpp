@@ -157,8 +157,26 @@ void drawCards(Hand* h){
         if (visible.at(i) == false) {
             cout << "|// |"; 
         }
-        else
-            cout << "|  " << (char) suits.at(i) << "|";
+        else{
+            cout << "|  ";
+            switch (suits.at(i) ) {
+                case 'E':
+                    cout << "\u2660";
+                    break;
+                case 'C':
+                    cout << "\u2665";
+                    break;
+                case 'O':
+                    cout << "\u2666";
+                    break;
+                case 'P':
+                    cout << "\u2663";
+                    break;
+                default:
+                    break;
+            }
+            cout << "|";
+        }
     }
     
     cout << endl;
@@ -183,7 +201,7 @@ void drawPlayerStatus(Player* p){
             cout << name << " is standing!" << endl;
             break;
         case 3:
-            cout << name << " has busted with " << p->getHand()->getTotal() << " points!" << endl;
+            cout << name << " is bust with " << p->getHand()->getTotal() << " points!" << endl;
             drawCards(p->getHand() );
             break;
         case 4:
