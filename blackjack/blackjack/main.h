@@ -20,21 +20,8 @@
 #include "game.h"
 #include "hand.h"
 #include "house.h"
-
-#define PROMPT "> "
+#include "ui.h"
 
 using namespace std;
-
-vector<Player> getPlayers();
-float setMinimBet();
-int getPlayerOptions(int);
-void drawCards(Hand*);
-void drawPlayerStatus(Player*);
-float getBet(float min, Player*);
-void wait(int);
-void drawDealerAction(Dealer*);
-void drawDealerStatus(Dealer*);
-void displayResult(Player*);
-void displayWinner(Player* p);
 
 #endif
