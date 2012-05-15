@@ -302,8 +302,9 @@ void displayWinner(Player* p){
 
 int main ()
 {
-    
     cout << "--------------- Blackjack --------------------" << endl;
+    
+    srand (unsigned(time(NULL)));
     
     Game *game = new Game(getPlayers(), setMinimBet());
     
@@ -346,6 +347,7 @@ int main ()
                 
                 drawPlayerStatus(current_player);
                 cout << endl;
+                wait(1);
                 
             }
             
