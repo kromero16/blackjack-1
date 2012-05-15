@@ -37,7 +37,7 @@ bool Game::over(){
     }
     else{
         for (player= players.begin(); player < players.end() ; player++){
-            if ( player->getBalance() >= minimBet ){
+            if ( player->getBalance() >= minimBet && player->getStatus() != 7 ){
                 winner = &(*player);
             }
         }
