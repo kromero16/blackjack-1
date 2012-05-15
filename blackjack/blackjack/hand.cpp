@@ -2,16 +2,6 @@
 
 Hand::Hand(){}
 
-void Hand::displayHand(){   //debug
-    vector<Card>::iterator it;
-    
-    for (it=vec_hand.begin(); it < vec_hand.end(); it++) {
-        Card c = *it;
-        cout << c.getValue() << " " << c.getSuit() << " - ";
-    }
-    
-    return;
-}
 
 bool Hand::getCard(House* h){
     Card c = h->putCard();
@@ -120,7 +110,7 @@ int Hand::getNumOfCards(){
 }
 
 Card* Hand::fetchCard(int card_number){
-    //warning -> card number 2 == position 1
+    //warning example -> card number 2 == position 1 in vec_hand
     for (int number = 0; number <= card_number-1; number++) {
         if (number == card_number-1)
             return &vec_hand.at(number);

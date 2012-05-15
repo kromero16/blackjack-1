@@ -12,13 +12,14 @@
 #include "hand.h"
 #include "dealer.h"
 #include "player.h"
+#include "game.h"
 
 #define PROMPT "> "
 
 using namespace std;
 
-vector<Player> getPlayers();
-float setMinimBet();
+void getPlayers(Game*);
+void setMinimBet(Game*);
 int getPlayerOptions(int);
 void drawCards(Hand*);
 void drawPlayerStatus(Player*);

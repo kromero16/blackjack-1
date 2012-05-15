@@ -23,6 +23,12 @@ Round::Round(vector<Player*> vec_players, House* h, Dealer* d, float* b){
     }
     
     dealer->setStatus(1); // not playing yet
+    
+    char dealer_first_card = dealer->getHand()->fetchCard(1)->getValue();
+    
+    if (dealer_first_card == 'A' ||  dealer_first_card == 'T') {  // if dealer has ace or 10, flip his 2nd card
+        dealer->getHand()->fetchCard(2)->flip();
+    }
 
 }
 

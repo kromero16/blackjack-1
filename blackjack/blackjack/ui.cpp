@@ -8,9 +8,7 @@
 
 #include "ui.h"
 
-vector<Player> getPlayers(){
-    
-    vector<Player> vec_players;
+void getPlayers(Game* game){
     
     string name;
     float saldo;
@@ -29,13 +27,11 @@ vector<Player> getPlayers(){
     
     for (unsigned int n = 1; n <= numOfPlayers; n++){
         cout << "Indique o nome do " << n << "o jogador: "<< endl << PROMPT;
-        cin >> name;
-        while(cin.fail()) {
-            cout << "Nome invalido. Introduza novamente." << endl << PROMPT;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cin >> name;
-        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, name);  // warning, mixing getlines with cin!
+        cin.clear();
+        
         cout << "Saldo desse jogador?" << endl << PROMPT;
         cin >> saldo;
         while(cin.fail()) {
@@ -46,13 +42,13 @@ vector<Player> getPlayers(){
             
         }
         
-        vec_players.push_back(Player(name, saldo));
+        game->addPlayer(name, saldo);
     }
     
-    return vec_players;
+    return;
 }
 
-float setMinimBet(){
+void setMinimBet(Game* game){
 	float bet;
     
 	cout << "Defina aposta minima (valor inteiro positivo)" << endl << PROMPT;
@@ -68,7 +64,7 @@ float setMinimBet(){
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
-	return bet;
+	game->setMinimBet(bet);
 }
 
 int getPlayerOptions(int options){
@@ -275,7 +271,11 @@ void wait ( int seconds )
     clock_t endwait;
     endwait = clock () + seconds * CLOCKS_PER_SEC ;
     while (clock() < endwait){}
+    
+    // esta funcao foi encontrada em
+    // http://www.cplusplus.com/reference/clibrary/ctime/clock/
 }
+
 
 void displayResult(Player* p){
     string name = p->getName(); 
@@ -290,10 +290,15 @@ void displayResult(Player* p){
 }
 
 void displayWinner(Player* p){
+    if (p == NULL) {
+        cout << "No one won the game." << endl;
+        return;
+    }
+    
     string name = p->getName();
     float balance = p->getBalance();
     
-    cout << name << " has won the game with " << balance << " credits!";
+    cout << name << " has won the game with " << balance << " credits!" << endl;
     
     return;
 }

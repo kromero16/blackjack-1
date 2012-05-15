@@ -13,14 +13,10 @@ int main ()
 {
     cout << "--------------- Blackjack --------------------" << endl;
     
-    Game *game = new Game(getPlayers(), setMinimBet());
+    Game* game = new Game();
     
-    /*   // para testar rapidamente sem escolher players
-    vector<Player> teste;
-    teste.push_back(Player("Pedro", 10));
-    teste.push_back(Player("Diogo", 10));
-    Game *game = new Game(teste, 5);
-     */
+    getPlayers(game);
+    setMinimBet(game);
     
     while( !game->over() ) {
         Round *round = game->playRound();

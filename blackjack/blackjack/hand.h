@@ -16,7 +16,6 @@ class Hand {
 public:
     Hand ();
     vector<Card> getCards();
-    void displayHand(); // debug
     int getTotal();
     void putCards(House*);
     bool getCard(House*);
