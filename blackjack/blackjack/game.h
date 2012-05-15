@@ -10,6 +10,7 @@ class Game{
     vector<Player> players;
     int nextPlayerWaiting;
     vector<Player*> active_players;
+    vector<Player*> players_entered_round;
     Dealer dealer;
     House gameDeck;
     float minimBet;
@@ -22,6 +23,8 @@ public:
     Player* getWinner();
     bool addPlayer(string, float);
     bool setMinimBet(float);
+    vector<Player*> getPlayersEnteredThisRound();
+    vector<Player*> getActivePlayers();
 };
 
 #endif

@@ -20,6 +20,7 @@ int main ()
     
     while( !game->over() ) {
         Round *round = game->playRound();
+        displayWhoEntered(game);
         
         while (!round->over() ) {
             
@@ -67,11 +68,11 @@ int main ()
                 displayResult(current_player);
             }
             
-            round->over();
-
         }
         
         delete round;
+        
+        queryPlayersGiveUp(game);
     }
     
     displayWinner(game->getWinner() );

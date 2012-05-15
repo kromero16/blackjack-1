@@ -48,35 +48,39 @@ bool Game::over(){
 
 Round* Game::playRound(){
     
+    this->players_entered_round.clear();
+    
     //popular uma ronda com 4 jogadores da lista players
-     if (this->active_players.empty() ) {
+    if (this->active_players.empty() ) {
         unsigned int i = 0;
         for (; i < players.size() && active_players.size() < 4 ; i++) {
             if ( players.at(i).getBalance() >= minimBet ){
                 this->active_players.push_back(&players.at(i) );
             }
         }
-        nextPlayerWaiting = i;
+        if (i < 4) {  // nao existem jogadores a esperar
+            nextPlayerWaiting = 0;
+        }
+        else         // existem jogadores em espera
+            nextPlayerWaiting = i;
     }
-
-
-    
-    //verificar se ha jogadores que perderam e substitui-los
- 
-    for (unsigned int i = 0; i < active_players.size() ; i++) {
-        if ( active_players.at(i)->getStatus() == 7 && nextPlayerWaiting > 0){
-            this->active_players.at(i) = (&players.at(nextPlayerWaiting));
-            if (nextPlayerWaiting < players.size()-1) {
-                nextPlayerWaiting++;
+    else{
+        
+        for (unsigned int i = 0; i < active_players.size() ; i++) {  //verificar se ha jogadores que perderam e substitui-los
+            if ( active_players.at(i)->getStatus() == 7 && nextPlayerWaiting > 0){
+                this->active_players.at(i) = (&players.at(nextPlayerWaiting));
+                this->players_entered_round.push_back( (&players.at(nextPlayerWaiting)) );
+                if (nextPlayerWaiting < players.size()-1) {
+                    nextPlayerWaiting++;
+                }
+                else
+                    nextPlayerWaiting = 0; // no more players are waiting
             }
-            else
-                nextPlayerWaiting = 0; // no more players are waiting
-        }
-        else if (active_players.at(i)->getStatus() == 7 && nextPlayerWaiting == 0){
-            active_players.erase(active_players.begin()+i);
+            else if (active_players.at(i)->getStatus() == 7 && nextPlayerWaiting == 0){
+                active_players.erase(active_players.begin()+i);
+            }
         }
     }
-    
     
     return new Round(active_players, &gameDeck, &dealer, &minimBet);
 }
@@ -84,4 +88,18 @@ Round* Game::playRound(){
 Player* Game::getWinner(){
     return winner;
 }
+
+vector<Player*> Game::getPlayersEnteredThisRound(){
+    return this->players_entered_round;
+}
+
+vector<Player*> Game::getActivePlayers(){
+    for (int i = 0; i < active_players.size(); i++ ) {
+        if (active_players.at(i)->getStatus() == 7) {
+            active_players.erase(active_players.begin()+i);
+        }
+    }
+    return this->active_players;
+}
+
 

@@ -76,6 +76,7 @@ bool Round::allPlayersHaveBetted(){
 
 
 bool Round::over(){
+    
     return roundOver;
 }
 
@@ -183,15 +184,15 @@ bool Round::moneyIsDistributed(){
 }
 
 Round::~Round(){
-    for (vector<Player*>::iterator player = active_players.begin(); player < active_players.end(); player++ ) {
-        (*player)->getHand()->putCards(gameDeck);
-        if ((*player)->getBalance() >= *minimBet) {
-            (*player)->changeStatus(1);  // is playing
+    for (int i = 0; i < active_players.size(); i++ ) {
+        (active_players.at(i))->getHand()->putCards(gameDeck);
+        if (active_players.at(i)->getBalance() >= *minimBet) {
+            active_players.at(i)->changeStatus(1);  // is playing
         }
-        else
-            (*player)->changeStatus(7); // player does not have enough money, lost
+        else{
+            active_players.at(i)->changeStatus(7);// player does not have enough money, lost
+        }
     }
-    
     dealer->getHand()->putCards(gameDeck);
     dealer->setStatus(1); // not playing yet
 }

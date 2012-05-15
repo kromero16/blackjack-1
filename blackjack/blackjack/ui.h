@@ -29,5 +29,7 @@ void drawDealerAction(Dealer*);
 void drawDealerStatus(Dealer*);
 void displayResult(Player*);
 void displayWinner(Player* p);
+void queryPlayersGiveUp(Game*);
+void displayWhoEntered(Game*);
 
 #endif

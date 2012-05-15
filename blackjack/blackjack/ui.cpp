@@ -281,7 +281,10 @@ void displayResult(Player* p){
     string name = p->getName(); 
     float winnings = p->getLatestWinnings();
     
-    if (winnings < 0) {
+    if (winnings < 0 && p->getStatus() == 7) {
+        cout << name << " lost his bet, " << -winnings << " credits. And lost the game." << endl;
+    }
+    else if (winnings < 0){
         cout << name << " lost his bet, " << -winnings << " credits." << endl;
     }
     else
@@ -303,3 +306,62 @@ void displayWinner(Player* p){
     return;
 }
 
+void displayWhoEntered(Game* game){
+    vector<Player*> players_entered_round = game->getPlayersEnteredThisRound();
+    if (players_entered_round.size() == 0) {
+        return;
+    }
+    else{
+        for (int i = 0; i < players_entered_round.size(); i++) {
+            cout << players_entered_round.at(i)->getName() << " has entered the game!" << endl;
+        }
+    }
+    return;
+}
+
+void queryPlayersGiveUp(Game* game){
+    cout << "Algum jogador quer desistir? (S/N)" << endl << PROMPT;
+    
+    char ans;
+    
+    cin.ignore(numeric_limits<int>::max(),'\n');
+    cin.get(ans);
+    
+    while (toupper(ans) != 'S' && toupper(ans) != 'N') {
+        cout << "Confirmacao invalida. Escolha 's' ou 'n' " << endl << PROMPT;
+        cin.ignore(numeric_limits<int>::max(),'\n');
+        cin.get(ans);
+    }
+    
+    if (toupper(ans) == 'S'){
+        int choice;
+        
+        vector<Player*> players = game->getActivePlayers();
+        
+        cout << "Quem vai desistir? Escolha um numero." << endl;
+        for (int i = 0; i < players.size(); i++) {
+            cout << i+1 << ". " << players.at(i)->getName() << endl;
+        }
+        
+        cout << PROMPT;
+        
+        cin >> choice;
+        
+        while (  (cin.fail() || choice <= 0 ) || choice > players.size() ) {
+            cout << "Escolha invalida. Introduza novamente." << endl << PROMPT;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> choice;
+        }
+        
+        players.at(choice-1)->changeStatus(7);
+        
+        cout << players.at(choice-1)->getName() << " has left the game." << endl;
+        
+    }
+    else if (toupper(ans) == 'N'){
+        return;
+    }
+    
+    return;
+}
