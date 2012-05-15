@@ -304,8 +304,6 @@ int main ()
 {
     cout << "--------------- Blackjack --------------------" << endl;
     
-    srand (unsigned(time(NULL)));
-    
     Game *game = new Game(getPlayers(), setMinimBet());
     
     /*   // para testar rapidamente sem escolher players

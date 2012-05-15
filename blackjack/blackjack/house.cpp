@@ -62,6 +62,8 @@ bool House::populate(){
 
 bool House::shuffle() {
     
+    srand (unsigned(time(NULL)));
+    
 	random_shuffle (deck.begin(), deck.end());
     
 	return true;
