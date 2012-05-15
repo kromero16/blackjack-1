@@ -76,7 +76,7 @@ bool Player::changeStatus(int new_status){
      4 - has doubled
      5 - has blackjack
      6 - has doubled and blackjack
-     7 - lost (no more money to bet)
+     7 - lost (no more money to bet) or gave up
      ...
     */
     

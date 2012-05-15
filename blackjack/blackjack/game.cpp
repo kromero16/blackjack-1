@@ -23,7 +23,7 @@ bool Game::over(){
     int inGame = 0;
     
     for (player = players.begin(); player < players.end() ; player++) {
-        if ( player->getBalance() >= minimBet ) {
+        if ( player->getBalance() >= minimBet && player->getStatus() != 7) {
             inGame++;
         }
     }
