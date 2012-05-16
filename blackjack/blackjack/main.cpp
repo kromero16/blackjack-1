@@ -12,7 +12,7 @@
 int main ()
 {
     // para desenhar unicode na consola do windows
-    #ifdef WIN32
+    #ifdef _WIN32
     _setmode(_fileno(stdout), _O_WTEXT);
     #endif
     

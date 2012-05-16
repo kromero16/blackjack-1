@@ -181,29 +181,29 @@ void drawCards(Hand* h){
             cout << "|  ";
             switch (suits.at(i) ) {
                 case 'E':
-                    #ifdef WIN32
-					std::wcout << L"\u2660";
+                    #ifdef _WIN32
+					cout << L"\u2660";
                     #else
                     cout << "\u2660";
                     #endif
                     break;
                 case 'C':
-                    #ifdef WIN32
-					std::wcout << L"\u2665";
+                    #ifdef _WIN32
+					cout << L"\u2665";
                     #else
                     cout << "\u2665";
                     #endif
                     break;
                 case 'O':
-                    #ifdef WIN32
-					std::wcout << L"\u2666";
+                    #ifdef _WIN32
+					cout << L"\u2666";
                     #else
                     cout << "\u2666";
                     #endif
                     break;
                 case 'P':
-                    #ifdef WIN32
-					std::wcout << L"\u2663";
+                    #ifdef _WIN32
+					cout << L"\u2663";
                     #else
                     cout << "\u2663";
                     #endif

@@ -22,9 +22,10 @@
 #include "house.h"
 #include "ui.h"
 
-#ifdef WIN32
+#ifdef _WIN32
 #include <fcntl.h>
 #include <io.h>
+#define cout "wcout"
 #endif
 
 using namespace std;
