@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB1B1B3C153EE84200818B34 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB1B1B3B153EE84200818B34 /* main.cpp */; };
 		EB1B1B3E153EE84200818B34 /* blackjack.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB1B1B3D153EE84200818B34 /* blackjack.1 */; };
+		EB6112291563C02800E79E3A /* ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB6112271563C02800E79E3A /* ui.cpp */; };
 		EB7E5E7715590034004C1F38 /* card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E6615590034004C1F38 /* card.cpp */; };
 		EB7E5E7915590034004C1F38 /* dealer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E6A15590034004C1F38 /* dealer.cpp */; };
 		EB7E5E7A15590034004C1F38 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB7E5E6C15590034004C1F38 /* game.cpp */; };
@@ -35,6 +36,8 @@
 		EB1B1B37153EE84200818B34 /* blackjack */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = blackjack; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1B1B3B153EE84200818B34 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EB1B1B3D153EE84200818B34 /* blackjack.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = blackjack.1; sourceTree = "<group>"; };
+		EB6112271563C02800E79E3A /* ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ui.cpp; sourceTree = "<group>"; };
+		EB6112281563C02800E79E3A /* ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ui.h; sourceTree = "<group>"; };
 		EB7E5E6615590034004C1F38 /* card.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = card.cpp; sourceTree = "<group>"; };
 		EB7E5E6715590034004C1F38 /* card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = card.h; sourceTree = "<group>"; };
 		EB7E5E6A15590034004C1F38 /* dealer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dealer.cpp; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				EB7E5E7615590034004C1F38 /* round.h */,
 				EB1B1B3B153EE84200818B34 /* main.cpp */,
 				EB7E5E7215590034004C1F38 /* main.h */,
+				EB6112271563C02800E79E3A /* ui.cpp */,
+				EB6112281563C02800E79E3A /* ui.h */,
 				EB1B1B3D153EE84200818B34 /* blackjack.1 */,
 			);
 			path = blackjack;
@@ -161,6 +166,7 @@
 				EB7E5E7C15590034004C1F38 /* house.cpp in Sources */,
 				EB7E5E7D15590034004C1F38 /* player.cpp in Sources */,
 				EB7E5E7E15590034004C1F38 /* round.cpp in Sources */,
+				EB6112291563C02800E79E3A /* ui.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

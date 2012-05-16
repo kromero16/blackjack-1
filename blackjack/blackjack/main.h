@@ -22,6 +22,11 @@
 #include "house.h"
 #include "ui.h"
 
+#ifdef WIN32
+#include <fcntl.h>
+#include <io.h>
+#endif
+
 using namespace std;
 
 #endif

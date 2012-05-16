@@ -15,6 +15,14 @@
 #include "game.h"
 #include <limits>
 #include <fstream>
+#include <iostream>
+
+#ifdef WIN32
+#include <fcntl.h>
+#include <io.h>
+#endif
+
+using namespace std;
 
 #define PROMPT "> "
 
