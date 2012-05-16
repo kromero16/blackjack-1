@@ -23,7 +23,7 @@ void getPlayers(Game* game){
 		playersFileWrite.open("players.txt");
 		playersFileWrite << "Saldo # Nome";
 
-		cout << "Quantos jogadores vão participar?" << endl << PROMPT;
+		cout << "Quantos jogadores vao participar?" << endl << PROMPT;
 
 		cin >> numOfPlayers;
 		while(cin.fail()) {
@@ -155,7 +155,7 @@ void drawCards(Hand* h){
     }
     
     for(unsigned int i = 0; i < suits.size(); ++i){
-        cout << ",---,";
+        cout << ".---.";
     }
     
     cout << endl;
@@ -226,7 +226,7 @@ void drawCards(Hand* h){
     cout << endl;
     
     for(unsigned int i = 0; i < suits.size(); ++i){
-        cout << "'---'";
+        cout << "`---'";
     }
     
     cout << endl;

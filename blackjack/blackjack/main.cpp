@@ -11,11 +11,6 @@
 
 int main ()
 {
-    // para desenhar unicode na consola do windows
-    #ifdef _WIN32
-    _setmode(_fileno(stdout), _O_WTEXT);
-    #endif
-    
     cout << "--------------- Blackjack --------------------" << endl;
     
     Game* game = new Game();

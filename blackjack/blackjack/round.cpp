@@ -35,7 +35,12 @@ Round::Round(vector<Player*> vec_players, House* h, Dealer* d, float* b){
 
 Player* Round::getNextPlayer(){
 	current_player++;
-
+	if(current_player == active_players.end())
+	{
+		current_player = active_players.begin();
+		return NULL;  // all current players have played
+	}
+	
 	return *current_player;
 }
 
@@ -45,8 +50,8 @@ Player* Round::getCurrentPlayer(){
 
 bool Round::allPlayersAreDone(){
     if ((*this->current_player)->getStatus() != 1){
-        this->getNextPlayer();
-        if (current_player == active_players.end() ){
+        if( this->getNextPlayer() == NULL ) // every current player is done
+        {
             dealer->getStatus(); // dealer is now playing
             return true;
         }
