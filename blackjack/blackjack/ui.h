@@ -16,11 +16,11 @@
 #include <limits>
 #include <fstream>
 #include <iostream>
+#include <string>
 
 #ifdef _WIN32
 #include <fcntl.h>
 #include <io.h>
-#define cout "wcout"
 #endif
 
 using namespace std;
