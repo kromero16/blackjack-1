@@ -25,6 +25,7 @@ public:
     bool setMinimBet(float);
     vector<Player*> getPlayersEnteredThisRound();
     vector<Player*> getActivePlayers();
+    vector<Player> getPlayers();
 };
 
 #endif

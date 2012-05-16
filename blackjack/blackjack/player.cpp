@@ -154,3 +154,16 @@ float Player::getLatestWinnings(){
     return this->latest_winnings;
 }
 
+bool Player::lost(){
+    if (this->status == 7)
+        return true;
+    else
+        return false;
+}
+bool Player::giveUp(){
+    this->changeStatus(7);
+    this->balance = 0;
+    
+    return true;
+}
+

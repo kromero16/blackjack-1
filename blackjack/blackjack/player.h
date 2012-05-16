@@ -29,6 +29,8 @@ public:
     float getBet();
     bool updateBalance(float);
     float getLatestWinnings();
+    bool lost();
+    bool giveUp();
     
 };
 

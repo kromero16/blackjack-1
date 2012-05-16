@@ -384,29 +384,55 @@ void queryPlayersGiveUp(Game* game){
     }
     
     if (toupper(ans) == 'S'){
-        int choice;
         
-        vector<Player*> players = game->getActivePlayers();
-        
-        cout << "Quem vai desistir? Escolha um numero." << endl;
-        for (int i = 0; i < players.size(); i++) {
-            cout << i+1 << ". " << players.at(i)->getName() << endl;
-        }
-        
-        cout << PROMPT;
-        
-        cin >> choice;
-        
-        while (  (cin.fail() || choice <= 0 ) || choice > players.size() ) {
-            cout << "Escolha invalida. Introduza novamente." << endl << PROMPT;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        while (1) {
+            
+            int choice;
+            
+            vector<Player*> players = game->getActivePlayers();
+            
+            cout << "Quem vai desistir? Escolha um numero." << endl;
+            cout << "0. Cancelar" << endl;
+            for (int i = 0; i < players.size(); i++) {
+                cout << i+1 << ". " << players.at(i)->getName() << endl;
+            }
+            
+            cout << PROMPT;
+            
             cin >> choice;
+            
+            while (  (cin.fail() || choice < 0 ) || choice > players.size() ) {
+                cout << "Escolha invalida. Introduza novamente." << endl << PROMPT;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin >> choice;
+            }
+            if (choice == 0){
+                cout << "Ninguem saiu do jogo." << endl;
+                return;
+            }
+            else{
+                players.at(choice-1)->giveUp();
+                cout << players.at(choice-1)->getName() << " saiu do jogo." << endl;
+                cout << "Mais alguem quer desistir? (S/N)" << endl << PROMPT;
+                ans = ' ';
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.get(ans);
+                
+                while (toupper(ans) != 'S' && toupper(ans) != 'N') {
+                    cout << "Confirmacao invalida. Escolha 's' ou 'n' " << endl << PROMPT;
+                    cin.ignore(numeric_limits<int>::max(),'\n');
+                    cin.get(ans);
+                }
+                
+                if (toupper(ans) == 'N') {
+                    break;
+                }
+                
+            }
+            
         }
-        
-        players.at(choice-1)->changeStatus(7);
-        
-        cout << players.at(choice-1)->getName() << " has left the game." << endl;
         
     }
     else if (toupper(ans) == 'N'){
@@ -414,4 +440,21 @@ void queryPlayersGiveUp(Game* game){
     }
     
     return;
+}
+
+void updatePlayers(Game* game){
+    ofstream playersFileWrite;
+    
+    playersFileWrite.open("players.txt");
+    playersFileWrite << "Saldo # Nome";
+    
+    vector<Player> players = game->getPlayers();
+    
+    for (unsigned int n = 0; n < players.size(); n++){
+        playersFileWrite << endl << players.at(n).getBalance() << " " << players.at(n).getName();
+    }
+    
+    playersFileWrite.close();
+    return;
+
 }

@@ -73,6 +73,7 @@ int main ()
         delete round;
         
         queryPlayersGiveUp(game);
+        updatePlayers(game);
     }
     
     displayWinner(game->getWinner() );
