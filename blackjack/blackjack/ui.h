@@ -13,6 +13,8 @@
 #include "dealer.h"
 #include "player.h"
 #include "game.h"
+#include <limits>
+#include <fstream>
 
 #define PROMPT "> "
 

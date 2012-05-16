@@ -13,39 +13,64 @@ void getPlayers(Game* game){
     string name;
     float saldo;
     unsigned int numOfPlayers;
+    ifstream playersFileRead;
+    ofstream playersFileWrite;
+
+    playersFileRead.open("players.txt");
     
-    cout << "Quantos jogadores vão participar?" << endl << PROMPT;
-    
-    cin >> numOfPlayers;
-    while(cin.fail()) {
-        cout << "Numero invalido. Introduza novamente." << endl << PROMPT;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin >> numOfPlayers;
+    if (!playersFileRead.is_open()){
+
+		playersFileWrite.open("players.txt");
+		playersFileWrite << "Saldo # Nome";
+
+		cout << "Quantos jogadores vão participar?" << endl << PROMPT;
+
+		cin >> numOfPlayers;
+		while(cin.fail()) {
+			cout << "Numero invalido. Introduza novamente." << endl << PROMPT;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin >> numOfPlayers;
+		}
+
+
+		for (unsigned int n = 1; n <= numOfPlayers; n++){
+			cout << "Indique o nome do " << n << "o jogador: "<< endl << PROMPT;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			getline(cin, name);  // warning, mixing getlines with cin!
+			cin.clear();
+
+			cout << "Saldo desse jogador?" << endl << PROMPT;
+			cin >> saldo;
+			while(cin.fail()) {
+				cout << "Saldo invalido. Introduza novamente." << endl << PROMPT;
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cin >> saldo;
+
+			}
+			playersFileWrite << endl << saldo << " " << name;
+			game->addPlayer(name, saldo);
+		}
+
+		playersFileWrite.close();
+		return;
     }
-    
-    
-    for (unsigned int n = 1; n <= numOfPlayers; n++){
-        cout << "Indique o nome do " << n << "o jogador: "<< endl << PROMPT;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        getline(cin, name);  // warning, mixing getlines with cin!
-        cin.clear();
-        
-        cout << "Saldo desse jogador?" << endl << PROMPT;
-        cin >> saldo;
-        while(cin.fail()) {
-            cout << "Saldo invalido. Introduza novamente." << endl << PROMPT;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cin >> saldo;
-            
-        }
-        
-        game->addPlayer(name, saldo);
+    else {
+    	string name;
+    	float balance;
+
+    	playersFileRead.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    	while(!playersFileRead.eof()){
+    		playersFileRead >> balance;
+    		getline(playersFileRead, name);
+    		game->addPlayer(name,balance);
+    	}
+
+    	playersFileRead.close();
     }
-    
-    return;
 }
 
 void setMinimBet(Game* game){
