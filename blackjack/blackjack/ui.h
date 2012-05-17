@@ -1,9 +1,15 @@
 //
 //  ui.h
-//  blackjack
 //
-//  Created by Pedro Fernandes on 5/15/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Projeto 2 PROG
+//
+//  Turma 6 Grupo 4 
+//
+//  Diogo Eiras - ei11087
+//  IDE - Eclipse, Visual Studio
+//
+//  Pedro Fernandes - ei11122
+//  IDE - Xcode
 //
 
 #ifndef ui_h

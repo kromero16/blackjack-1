@@ -1,3 +1,16 @@
+//
+//  house.h
+//
+//  Projeto 2 PROG
+//
+//  Turma 6 Grupo 4 
+//
+//  Diogo Eiras - ei11087
+//  IDE - Eclipse, Visual Studio
+//
+//  Pedro Fernandes - ei11122
+//  IDE - Xcode
+//
 
 #ifndef house_h
 #define house_h

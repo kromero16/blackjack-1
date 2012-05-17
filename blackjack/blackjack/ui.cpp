@@ -1,14 +1,35 @@
 //
 //  ui.cpp
-//  blackjack
 //
-//  Created by Pedro Fernandes on 5/15/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Projeto 2 PROG
+//
+//  Turma 6 Grupo 4 
+//
+//  Diogo Eiras - ei11087
+//  IDE - Eclipse, Visual Studio
+//
+//  Pedro Fernandes - ei11122
+//  IDE - Xcode
 //
 
 #include "ui.h"
 
 void getPlayers(Game* game){
+    
+    /* exemplo do players.txt
+     ------------------------
+     Balance # Name
+     1.23 Player 1
+     0 Player 2
+     40 Player   3
+     10 Player X
+     13.12 Test test test
+     ------------------------
+     estrutura de cada linha:
+     
+     Saldo(espaco)Nome\n
+     
+     */
     
     string name;
     float saldo;
@@ -21,7 +42,7 @@ void getPlayers(Game* game){
     if (!playersFileRead.is_open()){
 
 		playersFileWrite.open("players.txt");
-		playersFileWrite << "Saldo # Nome";
+		playersFileWrite << "Balance # Name";
 
 		cout << "How many players will participate?" << endl << PROMPT;
 
