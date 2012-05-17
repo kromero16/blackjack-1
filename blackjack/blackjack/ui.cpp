@@ -181,37 +181,45 @@ void drawCards(Hand* h){
             cout << "|  ";
             switch (suits.at(i) ) {
                 case 'E':
-                    #ifdef _WIN32
+                    #ifdef _MSC_VER
                     _setmode(_fileno(stdout), _O_WTEXT);
 					wcout << L"\u2660";
                     _setmode(_fileno(stdout), _O_TEXT);
+                    #elif _WIN32
+                    cout << 'E';
                     #else
                     cout << "\u2660";
                     #endif
                     break;
                 case 'C':
-                    #ifdef _WIN32
+                    #ifdef _MSC_VER
                     _setmode(_fileno(stdout), _O_WTEXT);
 					wcout << L"\u2665";
                     _setmode(_fileno(stdout), _O_TEXT);
+                    #elif _WIN32
+                    cout << 'C';
                     #else
                     cout << "\u2665";
                     #endif
                     break;
                 case 'O':
-                    #ifdef _WIN32
+                    #ifdef _MSC_VER
                     _setmode(_fileno(stdout), _O_WTEXT);
 					wcout << L"\u2666";
                     _setmode(_fileno(stdout), _O_TEXT);
+                    #elif _WIN32
+                    cout << 'O';
                     #else
                     cout << "\u2666";
                     #endif
                     break;
                 case 'P':
-                    #ifdef _WIN32
+                    #ifdef _MSC_VER
                     _setmode(_fileno(stdout), _O_WTEXT);
 					wcout << L"\u2663";
                     _setmode(_fileno(stdout), _O_TEXT);
+                    #elif _WIN32
+                    cout << 'P';
                     #else
                     cout << "\u2663";
                     #endif
