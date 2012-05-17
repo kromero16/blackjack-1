@@ -20,8 +20,8 @@ class Round{
 public:
     Round(vector<Player*>, House*, Dealer*, float*);
 	Player* getNextPlayer();
+    Player* getCurrentPlayer();
     bool allPlayersAreDone();
-	Player* getCurrentPlayer();
     bool allPlayersHaveBetted();
     bool over();
     bool doAction(int);

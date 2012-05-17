@@ -15,11 +15,11 @@ class Hand {
     
 public:
     Hand ();
-    vector<Card> getCards();
-    int getTotal();
-    void putCards(House*);
     bool getCard(House*);
     bool getCardFlipped(House*);
+    vector<Card> getCards();
+    void putCards(House*);
+    int getTotal();
     int getNumOfCards();
     Card* fetchCard(int);
     

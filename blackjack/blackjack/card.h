@@ -5,7 +5,7 @@ class Card {
     
     char suit; // 'O' ouros, 'C' copas, 'P' paus, 'E' espadas
     
-    char value; // '2', '3' ... 'T' ten, 'V' valete, 'D' dama, 'R' rei, 'A' as
+    char value; // '2', '3' ... 'T' (ten) dez, 'J' valete, 'Q' dama, 'K' rei, 'A' as
     
     bool faceUp;
     

@@ -60,13 +60,13 @@ int Hand::getTotal(){
                     case 'T':
                         score += 10;
                         break;
-                    case 'D':
+                    case 'Q':
                         score += 10;
                         break;
-                    case 'V':
+                    case 'J':
                         score += 10;
                         break;
-                    case 'R':
+                    case 'K':
                         score += 10;
                         break;
                     case 'A':

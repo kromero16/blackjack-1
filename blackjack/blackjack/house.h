@@ -17,7 +17,6 @@ class House{
     
 public:
     House();
-    void displayDeck(); // debug
     bool populate();
     bool shuffle();
     Card putCard();

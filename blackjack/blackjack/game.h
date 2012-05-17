@@ -18,11 +18,11 @@ class Game{
     
 public:
     Game();
-    Round* playRound();
-    bool over();
-    Player* getWinner();
     bool addPlayer(string, float);
     bool setMinimBet(float);
+    bool over();
+    Round* playRound();
+    Player* getWinner();
     vector<Player*> getPlayersEnteredThisRound();
     vector<Player*> getActivePlayers();
     vector<Player> getPlayers();

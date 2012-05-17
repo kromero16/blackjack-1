@@ -23,11 +23,11 @@ void getPlayers(Game* game){
 		playersFileWrite.open("players.txt");
 		playersFileWrite << "Saldo # Nome";
 
-		cout << "Quantos jogadores vao participar?" << endl << PROMPT;
+		cout << "How many players will participate?" << endl << PROMPT;
 
 		cin >> numOfPlayers;
 		while(cin.fail()) {
-			cout << "Numero invalido. Introduza novamente." << endl << PROMPT;
+			cout << "Invalid number. Please select again." << endl << PROMPT;
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			cin >> numOfPlayers;
@@ -35,16 +35,16 @@ void getPlayers(Game* game){
 
 
 		for (unsigned int n = 1; n <= numOfPlayers; n++){
-			cout << "Indique o nome do " << n << "o jogador: "<< endl << PROMPT;
+			cout << "What's the name of player number " << n << " ?"<< endl << PROMPT;
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			getline(cin, name);  // warning, mixing getlines with cin!
+			getline(cin, name);
 			cin.clear();
 
-			cout << "Saldo desse jogador?" << endl << PROMPT;
+			cout << "How much cash " << name << " will be playing with?" << endl << PROMPT;
 			cin >> saldo;
-			while(cin.fail()) {
-				cout << "Saldo invalido. Introduza novamente." << endl << PROMPT;
+			while(cin.fail() || saldo <= 0) {
+				cout << "Invalid amount. Please select again." << endl << PROMPT;
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				cin >> saldo;
@@ -77,11 +77,11 @@ void getPlayers(Game* game){
 void setMinimBet(Game* game){
 	float bet;
     
-	cout << "Defina aposta minima (valor inteiro positivo)" << endl << PROMPT;
+	cout << "How much is the minimum bet for this game?" << endl << PROMPT;
 	cin >> bet;
     
 	while(!cin.good() || bet <= 0){
-		cout << "Por favor, atribua um valor plausivel (inteiro positivo) para a aposta minima" << endl << PROMPT;
+		cout << "Invalid amount. Please input a positive number." << endl << PROMPT;
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cin >> bet;
@@ -103,7 +103,7 @@ int getPlayerOptions(int options){
             cout << PROMPT;
             cin >> choice;
             while( (cin.fail() || choice > 2) || choice < 1 ) {
-                cout << "Escolha invalida." << endl << PROMPT;
+                cout << "Invalid choice." << endl << PROMPT;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin >> choice;
@@ -116,7 +116,7 @@ int getPlayerOptions(int options){
             cout << PROMPT;
             cin >> choice;
             while( (cin.fail() || choice > 3) || choice < 1 ) {
-                cout << "Escolha invalida." << endl << PROMPT;
+                cout << "Invalid choice." << endl << PROMPT;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin >> choice;
@@ -126,7 +126,7 @@ int getPlayerOptions(int options){
             //has blackjack
             break;
         default:
-            cout << "Erro";
+            cout << "Error";
             return 0;
             break;
     }
@@ -180,46 +180,46 @@ void drawCards(Hand* h){
         else{
             cout << "|  ";
             switch (suits.at(i) ) {
-                case 'E':
+                case 'S':
                     #ifdef _MSC_VER
                     _setmode(_fileno(stdout), _O_WTEXT);
 					wcout << L"\u2660";
                     _setmode(_fileno(stdout), _O_TEXT);
                     #elif _WIN32
-                    cout << 'E';
+                    cout << 'S';  // spades - espadas
                     #else
                     cout << "\u2660";
                     #endif
                     break;
-                case 'C':
+                case 'H':
                     #ifdef _MSC_VER
                     _setmode(_fileno(stdout), _O_WTEXT);
 					wcout << L"\u2665";
                     _setmode(_fileno(stdout), _O_TEXT);
                     #elif _WIN32
-                    cout << 'C';
+                    cout << 'H'; // hearts - copas
                     #else
                     cout << "\u2665";
                     #endif
                     break;
-                case 'O':
+                case 'D':
                     #ifdef _MSC_VER
                     _setmode(_fileno(stdout), _O_WTEXT);
 					wcout << L"\u2666";
                     _setmode(_fileno(stdout), _O_TEXT);
                     #elif _WIN32
-                    cout << 'O';
+                    cout << 'D';  // diamonds - ouros
                     #else
                     cout << "\u2666";
                     #endif
                     break;
-                case 'P':
+                case 'C':
                     #ifdef _MSC_VER
                     _setmode(_fileno(stdout), _O_WTEXT);
 					wcout << L"\u2663";
                     _setmode(_fileno(stdout), _O_TEXT);
                     #elif _WIN32
-                    cout << 'P';
+                    cout << 'C';  // clubs - paus
                     #else
                     cout << "\u2663";
                     #endif
@@ -255,16 +255,19 @@ void drawPlayerStatus(Player* p){
         case 3:
             cout << name << " is bust with " << p->getHand()->getTotal() << " points!" << endl;
             drawCards(p->getHand() );
+            wait(2);
             break;
         case 4:
             cout << name << " has doubled and now has " << p->getHand()->getTotal() << " points!" << endl;
             drawCards(p->getHand() );
+            wait(2);
             break;
         case 5:
             cout << name << " has a blackjack!" << endl;
             if (p->getHand()->getNumOfCards() != 2) {
                 drawCards(p->getHand() );
             }
+            wait(2);
             break;
         default:
             break;
@@ -276,11 +279,11 @@ float getBet(float min, Player* player){
     float player_balance = player->getBalance();
     string name = player->getName();
     
-    cout << name << ", quanto queres apostar? (Saldo: " << player->getBalance() << " / Aposta minima: " << min << ")" << endl << PROMPT;
+    cout << name << ", how much do you want to bet? (Balance: " << player->getBalance() << " / Minimum bet: " << min << ")" << endl << PROMPT;
     cin >> bet;
     
     while (  (cin.fail() || bet < min ) || bet > player_balance ) {
-        cout << "Aposta invalida. Introduza novamente:" << endl << PROMPT;
+        cout << "Invalid bet. Please choose a valid number." << endl << PROMPT;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> bet;
@@ -339,14 +342,14 @@ void displayResult(Player* p){
     string name = p->getName(); 
     float winnings = p->getLatestWinnings();
     
-    if (winnings < 0 && p->getStatus() == 7) {
+    if (winnings < 0 && p->lost() ) {
         cout << name << " lost his bet, " << -winnings << " credits. And lost the game." << endl;
     }
     else if (winnings < 0){
         cout << name << " lost his bet, " << -winnings << " credits." << endl;
     }
     else
-        cout << name << " has won " << winnings << " credits!" << endl;
+        cout << name << " won " << winnings << " credits!" << endl;
     
 }
 
@@ -359,7 +362,11 @@ void displayWinner(Player* p){
     string name = p->getName();
     float balance = p->getBalance();
     
-    cout << name << " has won the game with " << balance << " credits!" << endl;
+    cout << name << " won the game with " << balance << " credits!" << endl << endl;
+    
+    cout << "Press any key to close...";
+    
+    cin.get();
     
     return;
 }
@@ -378,20 +385,20 @@ void displayWhoEntered(Game* game){
 }
 
 void queryPlayersGiveUp(Game* game){
-    cout << "Algum jogador quer desistir? (S/N)" << endl << PROMPT;
+    cout << "Is there a player who wants to give up? (Y/N)" << endl << PROMPT;
     
     char ans;
     
     cin.ignore(numeric_limits<int>::max(),'\n');
     cin.get(ans);
     
-    while (toupper(ans) != 'S' && toupper(ans) != 'N') {
-        cout << "Confirmacao invalida. Escolha 's' ou 'n' " << endl << PROMPT;
+    while (toupper(ans) != 'Y' && toupper(ans) != 'N') {
+        cout << "Invalid confirmation. Please choose 'y' or 'n' " << endl << PROMPT;
         cin.ignore(numeric_limits<int>::max(),'\n');
         cin.get(ans);
     }
     
-    if (toupper(ans) == 'S'){
+    if (toupper(ans) == 'Y'){
         
         while (1) {
             
@@ -399,8 +406,8 @@ void queryPlayersGiveUp(Game* game){
             
             vector<Player*> players = game->getActivePlayers();
             
-            cout << "Quem vai desistir? Escolha um numero." << endl;
-            cout << "0. Cancelar" << endl;
+            cout << "Who will give up? Choose a number." << endl;
+            cout << "0. Cancel" << endl;
             for (int i = 0; i < players.size(); i++) {
                 cout << i+1 << ". " << players.at(i)->getName() << endl;
             }
@@ -410,26 +417,26 @@ void queryPlayersGiveUp(Game* game){
             cin >> choice;
             
             while (  (cin.fail() || choice < 0 ) || choice > players.size() ) {
-                cout << "Escolha invalida. Introduza novamente." << endl << PROMPT;
+                cout << "Invalid choice. Choose again." << endl << PROMPT;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin >> choice;
             }
             if (choice == 0){
-                cout << "Ninguem saiu do jogo." << endl;
+                cout << "No one left the game." << endl;
                 return;
             }
             else{
                 players.at(choice-1)->giveUp();
-                cout << players.at(choice-1)->getName() << " saiu do jogo." << endl;
-                cout << "Mais alguem quer desistir? (S/N)" << endl << PROMPT;
+                cout << players.at(choice-1)->getName() << " has left the game." << endl;
+                cout << "Is there another player who wants to give up? (Y/N)" << endl << PROMPT;
                 ans = ' ';
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin.get(ans);
                 
-                while (toupper(ans) != 'S' && toupper(ans) != 'N') {
-                    cout << "Confirmacao invalida. Escolha 's' ou 'n' " << endl << PROMPT;
+                while (toupper(ans) != 'Y' && toupper(ans) != 'N') {
+                    cout << "Invalid confirmation. Please choose 'y' or 'n' " << endl << PROMPT;
                     cin.ignore(numeric_limits<int>::max(),'\n');
                     cin.get(ans);
                 }
@@ -454,7 +461,7 @@ void updatePlayers(Game* game){
     ofstream playersFileWrite;
     
     playersFileWrite.open("players.txt");
-    playersFileWrite << "Saldo # Nome";
+    playersFileWrite << "Balance # Name";
     
     vector<Player> players = game->getPlayers();
     
@@ -465,4 +472,11 @@ void updatePlayers(Game* game){
     playersFileWrite.close();
     return;
 
+}
+
+void drawPlayerTurn(Player* current_player, Round* round){
+    if (current_player != round->getCurrentPlayer() ) {
+        cout << "--------------- " << round->getCurrentPlayer()->getName() << "'s turn -----------------" << endl << endl;
+    }
+    return;
 }

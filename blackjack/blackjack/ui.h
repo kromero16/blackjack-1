@@ -43,5 +43,6 @@ void displayWinner(Player* p);
 void queryPlayersGiveUp(Game*);
 void displayWhoEntered(Game*);
 void updatePlayers(Game*);
+void drawPlayerTurn(Player*, Round*);
 
 #endif

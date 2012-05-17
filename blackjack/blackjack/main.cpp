@@ -11,7 +11,7 @@
 
 int main ()
 {
-    cout << "--------------- Blackjack --------------------" << endl;
+    cout << "--------------- Blackjack --------------------" << endl << endl;
     
     Game* game = new Game();
     
@@ -26,6 +26,8 @@ int main ()
             
             Dealer* dealer = round->getDealer();
             
+            cout << endl << "--------------- Betting Round ----------------" << endl << endl;
+            
             while (!round->allPlayersHaveBetted()) {
                 Player* current_player = round->getCurrentPlayer();
                 
@@ -34,10 +36,18 @@ int main ()
                 }
             }
             
+            cout << "--------------- Round Start ------------------" << endl << endl;
+            
+            wait(1);
+            
             while (!round->allPlayersAreDone() ) {
                 
-                Player* current_player = round->getCurrentPlayer();
+                Player* current_player;
                 
+                drawPlayerTurn(current_player, round);
+                
+                current_player = round->getCurrentPlayer();
+                            
                 cout << "Dealer has " << dealer->getHand()->getTotal() << " points." << endl;
                 
                 drawCards(dealer->getHand() );
@@ -55,6 +65,8 @@ int main ()
                 
             }
             
+            cout << "------------- Dealer's turn ---------------" << endl << endl;
+            
             while (!round->dealerIsDone()) {
                 drawDealerAction(dealer);
                 drawCards(dealer->getHand() );
@@ -62,6 +74,8 @@ int main ()
                 drawDealerStatus(dealer);
                 wait(3);
             }
+            
+            cout << endl << "--------------- Winnings ------------------" << endl << endl;
             
             while (!round->moneyIsDistributed() ) {
                 Player* current_player = round->getCurrentPlayer();
@@ -75,6 +89,8 @@ int main ()
         queryPlayersGiveUp(game);
         updatePlayers(game);
     }
+    
+    cout << endl << "--------------- Game Over -----------------" << endl << endl;
     
     displayWinner(game->getWinner() );
     

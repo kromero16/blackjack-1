@@ -15,15 +15,15 @@ class Player{
     
 public:
     Player (string, float);
+    Hand* getHand();
+    float getBalance();
+    string getName();
     bool stands();
     bool hits(House*);
     bool doubles(House*);
-    Hand* getHand();
-    float getBalance();
     bool changeStatus(int);
     int getStatus();
     int getOptions();
-    string getName();
     bool makeBet(float);
     bool hasBetted();
     float getBet();

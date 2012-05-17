@@ -10,16 +10,16 @@ bool House::populate(){
         
         switch (n) {
             case 0:
-                naipe = 'O';  // ouros
+                naipe = 'D';  // ouros - diamonds
                 break;
             case 1:
-                naipe = 'C';  // copas
+                naipe = 'H';  // copas - hearts
                 break;
             case 2:
-                naipe = 'P';  // paus
+                naipe = 'C';  // paus - clubs
                 break;
             case 3:
-                naipe = 'E';  // espadas
+                naipe = 'S';  // espadas - spades
                 break;
             default:
                 break;
@@ -35,13 +35,13 @@ bool House::populate(){
                         valor = 'T';  // dez
                         break;
                     case 11:
-                        valor = 'V';  // valete
+                        valor = 'J';  // valete
                         break;
                     case 12:
-                        valor = 'D';  // dama
+                        valor = 'Q';  // dama
                         break;
                     case 13:
-                        valor = 'R';  // rei
+                        valor = 'K';  // rei
                         break;
                     case 14:
                         valor = 'A';  // as
@@ -68,19 +68,6 @@ bool House::shuffle() {
     
 	return true;
     
-}
-
-void House::displayDeck(){
-    deque<Card>::iterator it;
-    it = deck.begin();
-    
-    while (it != deck.end() ) {
-        Card c = *it;
-        cout << c.getValue() << " " << c.getSuit() << " | ";
-        it++;
-    }
-    
-    return;
 }
 
 Card House::putCard() {
