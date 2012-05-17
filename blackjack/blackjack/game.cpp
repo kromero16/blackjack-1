@@ -70,6 +70,7 @@ Round* Game::playRound(){
         for (; i < players.size() && active_players.size() < 4 ; i++) {
             if ( players.at(i).getBalance() >= minimBet ){
                 this->active_players.push_back(&players.at(i) );
+                this->players_entered_round.push_back(&players.at(i));
             }
         }
         if (players.size() <= 4) {  // nao existem jogadores a esperar

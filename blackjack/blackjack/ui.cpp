@@ -398,6 +398,7 @@ void displayWhoEntered(Game* game){
         return;
     }
     else{
+        cout << endl;
         for (int i = 0; i < players_entered_round.size(); i++) {
             cout << players_entered_round.at(i)->getName() << " has entered the game!" << endl;
         }
