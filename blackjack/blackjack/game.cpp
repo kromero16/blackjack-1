@@ -109,12 +109,14 @@ vector<Player*> Game::getPlayersEnteredThisRound(){
 }
 
 vector<Player*> Game::getActivePlayers(){
-    for (int i = 0; i < active_players.size(); i++ ) {
-        if (active_players.at(i)->lost() ) {
-            active_players.erase(active_players.begin()+i);
+    vector<Player*> copy_active_players = active_players;
+    
+    for (int i = 0; i < copy_active_players.size(); i++ ) {
+        if (copy_active_players.at(i)->lost() ) {
+            copy_active_players.erase(copy_active_players.begin()+i);
         }
     }
-    return this->active_players;
+    return copy_active_players;
 }
 
 vector<Player> Game::getPlayers(){
